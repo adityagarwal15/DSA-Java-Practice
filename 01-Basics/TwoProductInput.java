@@ -8,6 +8,7 @@ public class TwoProductInput {
 
         int prod = a * b;
 
+        sc.close();
         System.out.println(prod);
     }
 }
