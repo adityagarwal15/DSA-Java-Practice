@@ -12,8 +12,10 @@ public class IncomeTax {
             System.out.println("no tax");
         } else if (salary > 500000 && salary <= 1000000) {
             System.out.println("20% tax");
+            System.out.printf("pay tax of: %.2f%n", 0.2 * salary);
         } else {
             System.out.println("30% tax");
+            System.out.printf("pay tax of: %.2f%n", 0.3 * salary);
         }
 
         sc.close();
