@@ -9,8 +9,10 @@ public class CalculatorSwitch {
         int a = sc.nextInt();
         int b = sc.nextInt();
 
-          sc.nextLine();
-          
+          sc.nextLine(); //important to clear the buffer if new line from last input sc.nextInt()
+
+          //QuickScannerGuide for more detailed explanation
+
         System.out.println("Enter operator (+, -, *, /, %): ");
         String operator = sc.nextLine(); 
 
