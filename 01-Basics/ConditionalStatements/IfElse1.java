@@ -1,3 +1,5 @@
+package ConditionalStatements;
+
 import java.util.*;
 
 public class IfElse1{
