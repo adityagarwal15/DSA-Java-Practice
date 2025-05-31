@@ -13,7 +13,7 @@ This repository is created to track my journey of learning Data Structures and A
 ---
 
 ## 📂 Folder Structure
-- `/01-Basics` - Java basics, syntax, loops, conditions, functions
+- `/01-Basics` - Java basics, syntax, loops, conditions, functions/methods, patterns
 - `/02-Arrays` - Array problems and operations
 - `/03-LinkedLists` - Implementation and problems on Linked Lists
 - `/04-Stacks` - Stack implementation and usage problems
