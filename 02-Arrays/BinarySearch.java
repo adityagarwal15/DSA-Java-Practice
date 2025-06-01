@@ -4,7 +4,7 @@ public class BinarySearch {
 
     public static int Binary(int numbers[], int key) {
         int start = 0;
-        int end = numbers.length - 1; // because to get last position it follows 0-based indexing so last index will be length - 1
+        int end = numbers.length - 1; // because to get last position it follows 0-based indexing so last index will be length - 1.
 
         while (start <= end) { // to check all numbers
             int mid = (start + end) / 2;
