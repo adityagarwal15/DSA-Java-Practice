@@ -62,7 +62,7 @@ Welcome to my **DSA (Data Structures & Algorithms)** Java Practice Repository �
 ## 🔗 Let’s Connect
 
 * 💼 [LinkedIn](https://www.linkedin.com/in/adityagarwal15/)
-* 💻 [Portfolio]https://adityagarwal.netlify.app/)
+* 💻 [Portfolio](https://adityagarwal.netlify.app/)
 
 ---
 
