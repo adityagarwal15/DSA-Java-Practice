@@ -15,7 +15,7 @@ public class PrintPairs {
             }
             System.out.println();
         }
-        System.out.print("total pairs: " + totalPairs);
+        System.out.print("total pairs: " + totalPairs); // print total pairs
     }
 
     // we are printing everything in the method itself because this is eassier
