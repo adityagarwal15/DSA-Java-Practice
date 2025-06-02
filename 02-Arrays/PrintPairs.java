@@ -16,6 +16,8 @@ public class PrintPairs {
             System.out.println();
         }
         System.out.print("total pairs: " + totalPairs); // print total pairs
+
+        // total pairs can also be calculated using n(n-1)/2
     }
 
     // we are printing everything in the method itself because this is eassier
