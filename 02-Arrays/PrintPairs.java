@@ -4,7 +4,7 @@ public class PrintPairs {
 
     // Method to print all pairs from the array
     public static void Print(int numbers[]) {
-        int totalPairs = 0; // to find total pairs
+        int totalPairs = 0; // to count while printing
 
         for (int i = 0; i < numbers.length; i++) {
             int current = numbers[i];
@@ -15,9 +15,13 @@ public class PrintPairs {
             }
             System.out.println();
         }
-        System.out.print("total pairs: " + totalPairs); // print total pairs
 
-        // total pairs can also be calculated using n(n-1)/2
+        System.out.println("Total pairs by counting: " + totalPairs);
+
+        // Using n(n-1)/2 formula
+        int n = numbers.length;
+        int formulaPairs = (n * (n - 1)) / 2;
+        System.out.println("Total pairs using formula: " + formulaPairs);
     }
 
     // we are printing everything in the method itself because this is eassier
