@@ -1,39 +1,71 @@
-# DSA Java Practice Repository
+# 🚀 DSA Java Practice Repository
 
-This repository is created to track my journey of learning Data Structures and Algorithms (DSA) from **basics** using **Java**.
+Welcome to my **DSA (Data Structures & Algorithms)** Java Practice Repository — created to build a rock-solid foundation in problem-solving and prepare for **MAANG/FAANG-level interviews**.
 
 ---
 
-## 📚 Goals
-- Build a strong foundation starting from Java basics and simple DSA concepts.
-- Solve problems regularly to improve problem-solving skills.
-- Maintain well-commented, clean Java code for all solutions.
-- Track progress and reflect on learning milestones.
+## 🎯 My Goals
+
+* ✅ Master Java fundamentals + core DSA topics (Arrays, LinkedLists, Trees, Graphs, etc.)
+* ✅ Practice problems daily from LeetCode, GFG, and interview books.
+* ✅ Write clean, well-commented Java code for every problem.
+* ✅ Build muscle memory for common patterns (two-pointers, sliding window, recursion, etc.)
+* ✅ Stay consistent and track progress.
+* ✅ Crack top product-based companies like **Google, Amazon, Microsoft, Atlassian, Adobe, Flipkart, etc.**
 
 ---
 
 ## 📂 Folder Structure
-- `/01-Basics` - Java basics, syntax, loops, conditions, functions/methods, patterns
-- `/02-Arrays` - Array problems and operations
-- `/03-LinkedLists` - Implementation and problems on Linked Lists
-- `/04-Stacks` - Stack implementation and usage problems
-- `/05-Queues` - Queue implementation and problems
-- `/06-Trees` - Binary Trees, BST, Tree traversal
-- `/07-Graphs` - Graph representation and traversal algorithms
-- `/08-Sorting` - Basic sorting algorithms (Bubble, Selection, Merge, Quick)
-- `/09-Searching` - Linear search, Binary search
-- `/10-DynamicProgramming` - Beginner to intermediate DP problems
-- `/11-Recursion` - Recursive problems and backtracking
+
+| Folder                  | Description                                               |
+| ----------------------- | --------------------------------------------------------- |
+| `01-Basics`             | Java syntax, loops, conditions, methods, patterns         |
+| `02-Arrays`             | Array operations, prefix sum, two-pointers, subarrays     |
+| `03-LinkedLists`        | Single/Double Linked Lists, cycle detection, reversal     |
+| `04-Stacks`             | Stack basics, balanced parentheses, infix-postfix eval    |
+| `05-Queues`             | Queue/Deque, circular queue, sliding window problems      |
+| `06-Trees`              | Binary Trees, BST, DFS, BFS, Tree traversals              |
+| `07-Graphs`             | BFS, DFS, Union-Find, Dijkstra, Topological sort          |
+| `08-Sorting`            | Bubble, Selection, Insertion, Merge Sort, QuickSort       |
+| `09-Searching`          | Linear search, Binary search, search space problems       |
+| `10-DynamicProgramming` | Memoization, Tabulation, DP patterns, 0/1 Knapsack        |
+| `11-Recursion`          | Backtracking, permutations, subsets, N-Queens             |
+| `cheatsheets`           | Quick revision sheets (Time & Space Complexity, Java I/O) |
 
 ---
 
-## 📖 Resources I’m Following
-- [Java Tutorials - W3Schools](https://www.w3schools.com/java/)
-- [GeeksforGeeks - Data Structures in Java](https://www.geeksforgeeks.org/data-structures/)
-- [LeetCode](https://leetcode.com/)
-- [Cracking the Coding Interview (Book)](https://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/0984782850)
-- [Abdul Bari DSA Playlist (Java)](https://www.youtube.com/playlist?list=PLfqMhTWNBTe0b2nM6JHVCnAkhQRGiZMSJ)
+## 🧠 What You’ll Find Here
+
+* ✔️ Structured practice from scratch to advanced DSA topics
+* ✔️ Well-documented Java code and logic behind every solution
+* ✔️ Real-world interview questions and patterns
+* ✔️ Special notes & cheat sheets to boost revision speed before interviews
 
 ---
 
-Happy coding and learning! 💻✨
+## 📖 Resources I'm Following
+
+* [📘 Cracking the Coding Interview (Book)](https://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/0984782850)
+* [LeetCode](https://leetcode.com/) – Daily coding practice
+* [GeeksforGeeks](https://www.geeksforgeeks.org/data-structures/) – In-depth articles
+* [Abdul Bari DSA (Java)](https://www.youtube.com/playlist?list=PLfqMhTWNBTe0b2nM6JHVCnAkhQRGiZMSJ) – Concept clarity
+* [W3Schools - Java](https://www.w3schools.com/java/) – Java basics refresh
+
+---
+
+## 💼 Long-Term Goal
+
+> Get placement in a **top-tier product company** with a **good package**, by mastering Java DSA and building strong problem-solving skills.
+
+---
+
+## 🔗 Let’s Connect
+
+* 💼 [LinkedIn](https://www.linkedin.com/in/adityagarwal15/)
+* 💻 [Portfolio](https://adityagarwal.netlify.app/)
+
+---
+
+### 💡 Stay consistent. Stay hungry. Let's crack it! 💪
+
+---
