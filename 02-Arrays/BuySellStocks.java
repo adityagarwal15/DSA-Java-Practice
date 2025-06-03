@@ -9,7 +9,7 @@ public class BuySellStocks {
                 maxProfit = Math.max(profit,maxProfit);
             }
             else{
-                buyPrice = prices[i];
+                buyPrice = prices[i]; // when we are in loss, case either the array is in ascending or descending order
             }
         }
         return maxProfit;
