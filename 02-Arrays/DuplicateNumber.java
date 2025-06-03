@@ -8,7 +8,7 @@ public class DuplicateNumber {
                 }
             }
         }
-        return false; // all elements are unique
+        return false; // return false once all pairs are checked
     }
 
     public static void main(String[] args) {
