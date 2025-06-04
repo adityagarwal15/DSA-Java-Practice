@@ -52,3 +52,16 @@ public class InbuiltSort {
         printArr(arr);  // Output depends on which sort method is active
     }
 }
+
+
+
+// 💡 Notes for Quick Revision:
+// ✅ Arrays.sort(arr) → ascending, entire array
+
+// ✅ Arrays.sort(arr, from, to) → ascending, subarray
+
+// ✅ Arrays.sort(arr, Collections.reverseOrder()) → descending, full array
+
+// ✅ Arrays.sort(arr, from, to, Collections.reverseOrder()) → descending, subarray
+
+// ⚠️ Use Integer[], not int[], for descending order using Collections.reverseOrder()
