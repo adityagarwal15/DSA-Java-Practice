@@ -3,27 +3,52 @@ import java.util.*;
 public class InbuiltSort {
 
     // Method to print the elements of the array
-    public static void printArr(int arr[]) {
-        for(int i = 0; i < arr.length; i++) {
+    public static void printArr(Integer arr[]) {
+        for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
         }
     }
 
     public static void main(String[] args) {
-        int arr[] = {5, 2, 8, 6, 1, 3, 9};
+        // Note: For using Collections.reverseOrder(), we must use the wrapper class Integer instead of int
+        Integer arr[] = {5, 2, 8, 6, 1, 3, 9};
 
-        // Arrays.sort(arr) sorts the array IN-PLACE.
-        // This means it modifies the original array directly — it doesn't return a new sorted array.
-        // It also RETURNS VOID — so you can't do something like arr = Arrays.sort(arr), that will cause an error.
-        Arrays.sort(arr);  
+        /*
+         * Arrays.sort(arr)
+         * ---------------------------------------------
+         * ✅ METHOD 1 - Sorts the entire array in ASCENDING order by default.
+         * 🔸 Works in-place: directly modifies the original array.
+         * 🔸 Returns void — so you can't assign its result to a variable.
+         */
+        // Arrays.sort(arr);  // Ascending order
 
-        // If you try to print Arrays.sort(arr), it won't work because it returns void.
-        // System.out.println(Arrays.sort(arr));  // ❌ This is invalid.
+        // ❌ This is invalid because Arrays.sort() returns void:
+        // System.out.println(Arrays.sort(arr));  
 
-        // You can print the sorted array like this:
-        // System.out.println(Arrays.toString(arr));  // ✅ Using built-in method
+        // ✅ Correct way to print sorted array:
+        // System.out.println(Arrays.toString(arr));  
 
-        // Or using a custom method like this:
-        printArr(arr);  // ✅ Prints: 1 2 3 5 6 8 9
+        /*
+         * ✅ METHOD 2 - Sort a specific range (from index `fromIndex` to `toIndex - 1`)
+         * 🔸 Example: Sort elements from index 0 to 2 (i.e., indices 0, 1, 2) it is      *     non-inclusive
+         */
+        // Arrays.sort(arr, 0, 3);  // Sorts only first 3 elements in ascending order
+
+        /*
+         * ✅ METHOD 3 - Sort in DESCENDING order
+         * 🔸 Requires using Integer[] instead of int[] because Collections.reverseOrder() needs objects.
+         */
+        Arrays.sort(arr, Collections.reverseOrder());
+
+        /*
+         * ✅ METHOD 4 - Sort a specific range in DESCENDING order
+         * 🔸 Sorts from index 0 to 2 (not inclusive of 3)
+         */
+        Arrays.sort(arr, 0, 3, Collections.reverseOrder());
+
+        /*
+         * Print the final sorted array using custom method
+         */
+        printArr(arr);  // Output depends on which sort method is active
     }
 }
