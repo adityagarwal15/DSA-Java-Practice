@@ -7,7 +7,7 @@ public class SelectionSort {
 
             // Inner loop - find the index of the smallest element in the unsorted part
             for (int j = i + 1; j < numbers.length; j++) {
-                if (numbers[j] < numbers[minPos]) {
+                if (numbers[j] < numbers[minPos]) {  // reverse (<) --> (>) to get in descending order
                     minPos = j; // update min index
                 }
             }
