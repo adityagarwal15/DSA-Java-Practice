@@ -2,25 +2,46 @@ import java.util.*;
 
 public class SearchElementSorted {
 
-    // Staircase Search: Efficient for sorted row-wise & column-wise matrices
+    // Method to search for a key in a sorted 2D matrix using Staircase Search
     public static boolean staircase(int matrix[][], int key) {
         int n = matrix.length;
         int m = matrix[0].length;
 
-        int row = 0;
-        int col = m - 1; // Start from top-right corner
+        // ---------------------------
+        // METHOD 1 - Top-Right Corner (O(n + m))
+        // ---------------------------
+        // int row = 0;
+        // int col = m - 1;
+        //
+        // while (row < n && col >= 0) {
+        //     if (matrix[row][col] == key) {
+        //         System.out.println("Key found at: (" + row + ", " + col + ")");
+        //         return true;
+        //     } else if (key < matrix[row][col]) {
+        //         col--; // Move left
+        //     } else {
+        //         row++; // Move down
+        //     }
+        // }
 
-        while (row < n && col >= 0) {
+        // ---------------------------
+        // METHOD 2 - Bottom-Left Corner (O(n + m))
+        // ---------------------------
+        int row = n - 1;
+        int col = 0;
+
+        while (row >= 0 && col < m) {
             if (matrix[row][col] == key) {
                 System.out.println("Key found at: (" + row + ", " + col + ")");
                 return true;
-            } else if (key < matrix[row][col]) {
-                col--; // Move left
+            } else if (matrix[row][col] > key) {
+                row--; // Move up
             } else {
-                row++; // Move down
+                col++; // Move right
             }
         }
 
+        // If not found
         System.out.println("Key not found");
         return false;
     }
@@ -32,7 +53,7 @@ public class SearchElementSorted {
         int n = matrix.length;
         int m = matrix[0].length;
 
-        // Enter key to search
+        // Input the key to search
         System.out.print("Enter key to search: ");
         int key = sc.nextInt();
 
@@ -44,18 +65,18 @@ public class SearchElementSorted {
             }
         }
 
-        // Print the entered matrix
+        // Display the matrix
         System.out.println("Matrix you entered:");
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 System.out.print(matrix[i][j] + " ");
             }
-            System.out.println(); // Move to next line after each row
+            System.out.println();
         }
 
-        // Perform the search
+        // Search for the key
         staircase(matrix, key);
 
-        sc.close(); // Close scanner to avoid resource leak
+        sc.close(); // Good practice to close Scanner
     }
 }
