@@ -2,7 +2,7 @@ import java.util.*;
 
 public class PrintChar {
 
-    // Method to print characters of the string one by one
+    // Method to print characters of the string one by one.
     public static void printLetters(String fullName){
         for (int i = 0; i < fullName.length(); i++) {
             // Looping through each character of the string
