@@ -20,7 +20,7 @@ public class StringCompression {
             }
         }
 
-        return sb.toString(); // return as String
+        return sb.toString(); // return as String.
     }
 
     public static void main(String[] args) {
