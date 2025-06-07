@@ -1,15 +1,26 @@
 public class PrintCharAtoZ {
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
-        //initializing empty string
+        // Approach 1: Using only StringBuilder 'sb'
         StringBuilder sb = new StringBuilder("");
 
-        //loop from a-z
-        for(char ch='a'; ch<='z'; ch++){
-            sb.append(ch);  //to add all char a-z in the (sb) object
+        for (char ch = 'a'; ch <= 'z'; ch++) {
+            sb.append(ch);  // Appending characters a to z
         }
 
-        //print object sb to get all characters a-z
-        System.out.println(sb);
+        System.out.println("Using sb only: " + sb.toString());  // Output: abc...z
+
+        /*
+        // Approach 2: Using both sb and result
+        
+        StringBuilder sb = new StringBuilder("");
+        StringBuilder result = null;
+
+        for (char ch = 'a'; ch <= 'z'; ch++) {
+            result = sb.append(ch);  // result also refers to sb
+        }
+
+        System.out.println("Using result: " + result.toString());
+        */
     }
 }
