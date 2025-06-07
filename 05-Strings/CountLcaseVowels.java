@@ -18,12 +18,12 @@ public class CountLcaseVowels {
             if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
 
                 //ch == 'a' and ch == 'A' both are different
-                
+
                 count++;  // Increase count if it's a vowel
             }
         }
 
-        sb.append(count);  
+        sb.append(count);  // stringbuilder automatically convert count(int) to string
         return sb.toString(); // Convert StringBuilder to String and return
     }
 
