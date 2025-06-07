@@ -36,7 +36,7 @@ public class LcaseToUcase {
     }
 
     public static void main(String[] args) {
-        String str = "hi, i am aditya";
+        String str = "hi,   i     am     aditya";
         System.out.println(upperCase(str)); // Output: Hi, I Am Aditya
     }
 }
