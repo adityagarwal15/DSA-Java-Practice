@@ -1,1349 +1,697 @@
-# 🚀 Java OOP Mastery Guide 
+# 🚀 Java OOP Essentials - MAANG/FAANG Interview Prep
 
 ---
 
-## 🔥 Memory Management & OOP
+## 📚 Core OOP Topics Checklist
 
-### **Object Lifecycle & Garbage Collection**
+### ✅ **01. Classes & Objects**
+**Class**: Blueprint/Template  
+**Object**: Instance of a class
+
 ```java
-public class ObjectLifecycleDemo {
-    private static List<ObjectLifecycleDemo> instances = new ArrayList<>();
-    private String data;
+class Student {
+    String name;
+    int age;
     
-    public ObjectLifecycleDemo(String data) {
-        this.data = data;
-        instances.add(this); // Potential memory leak
+    void study() {
+        System.out.println(name + " is studying");
+    }
+}
+
+// Creating objects
+Student s1 = new Student();
+s1.name = "Alice";
+s1.age = 20;
+```
+
+---
+
+### ✅ **02. Access Modifiers**
+
+| Modifier | Class | Package | Subclass | Global |
+|----------|-------|---------|----------|--------|
+| private | ✅ | ❌ | ❌ | ❌ |
+| default | ✅ | ✅ | ❌ | ❌ |
+| protected | ✅ | ✅ | ✅ | ❌ |
+| public | ✅ | ✅ | ✅ | ✅ |
+
+```java
+class Example {
+    private int a;      // Only within class
+    int b;             // Within package (default)
+    protected int c;   // Within package + subclasses
+    public int d;      // Everywhere
+}
+```
+
+---
+
+### ✅ **03. Getters & Setters**
+```java
+class Person {
+    private String name;
+    private int age;
+    
+    // Getter
+    public String getName() {
+        return name;
     }
     
-    // Finalize method (deprecated but still asked in interviews)
-    @Override
-    protected void finalize() throws Throwable {
-        System.out.println("Object being garbage collected: " + data);
-        super.finalize();
-    }
-    
-    // Proper cleanup method
-    public void cleanup() {
-        instances.remove(this);
-        this.data = null;
+    // Setter with validation
+    public void setAge(int age) {
+        if (age > 0) {
+            this.age = age;
+        }
     }
 }
 ```
 
-### **Method Hiding vs Method Overriding**
+---
+
+### ✅ **04. Encapsulation** 🔒
+**Definition**: Binding data and methods + restricting direct access
+
 ```java
-class Parent {
-    public static void staticMethod() {
-        System.out.println("Parent static method");
+class BankAccount {
+    private double balance;  // Private data
+    
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+        }
     }
     
-    public void instanceMethod() {
-        System.out.println("Parent instance method");
+    public double getBalance() {
+        return balance;  // Controlled access
     }
 }
-
-class Child extends Parent {
-    // Method hiding (not overriding)
-    public static void staticMethod() {
-        System.out.println("Child static method");
-    }
-    
-    // Method overriding
-    @Override
-    public void instanceMethod() {
-        System.out.println("Child instance method");
-    }
-}
-
-// Demonstration
-Parent p = new Child();
-p.staticMethod();    // Calls Parent.staticMethod() - Method Hiding
-p.instanceMethod();  // Calls Child.instanceMethod() - Method Overriding
 ```
 
-### **Advanced Constructor Patterns**
+**Benefits**: Data security, validation, maintainability
+
+---
+
+### ✅ **05. Constructors**
+- No return type
+- Same name as class
+- Called when object is created
+
 ```java
-public class DatabaseConnection {
-    private final String url;
-    private final String username;
-    private final int timeout;
-    private final boolean autoCommit;
+class Car {
+    String brand;
+    int year;
     
-    // Private constructor for builder pattern
-    private DatabaseConnection(Builder builder) {
-        this.url = builder.url;
-        this.username = builder.username;
-        this.timeout = builder.timeout;
-        this.autoCommit = builder.autoCommit;
+    // Constructor
+    public Car(String brand, int year) {
+        this.brand = brand;
+        this.year = year;
+    }
+}
+```
+
+---
+
+### ✅ **06. Types of Constructors**
+
+#### **Default Constructor**
+```java
+class Student {
+    String name = "Unknown";
+    
+    // Default constructor (provided by Java if not written)
+    public Student() {
+        // Empty
+    }
+}
+```
+
+#### **Parameterized Constructor**
+```java
+class Student {
+    String name;
+    int age;
+    
+    public Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+```
+
+#### **Constructor Overloading**
+```java
+class Employee {
+    String name;
+    int id;
+    double salary;
+    
+    public Employee(String name) {
+        this.name = name;
     }
     
-    // Builder pattern - alternative to telescoping constructors
-    public static class Builder {
-        private String url;
-        private String username;
-        private int timeout = 30; // default
-        private boolean autoCommit = true; // default
-        
-        public Builder setUrl(String url) {
-            this.url = url;
-            return this;
-        }
-        
-        public Builder setUsername(String username) {
-            this.username = username;
-            return this;
-        }
-        
-        public Builder setTimeout(int timeout) {
-            this.timeout = timeout;
-            return this;
-        }
-        
-        public Builder setAutoCommit(boolean autoCommit) {
-            this.autoCommit = autoCommit;
-            return this;
-        }
-        
-        public DatabaseConnection build() {
-            if (url == null) throw new IllegalStateException("URL is required");
-            return new DatabaseConnection(this);
-        }
+    public Employee(String name, int id) {
+        this.name = name;
+        this.id = id;
+    }
+    
+    public Employee(String name, int id, double salary) {
+        this.name = name;
+        this.id = id;
+        this.salary = salary;
+    }
+}
+```
+
+---
+
+### ✅ **07. Copy Constructor**
+Java doesn't have built-in copy constructor, but we can create one:
+
+```java
+class Person {
+    String name;
+    int age;
+    
+    // Regular constructor
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    
+    // Copy constructor
+    public Person(Person other) {
+        this.name = other.name;
+        this.age = other.age;
     }
 }
 
 // Usage
-DatabaseConnection conn = new DatabaseConnection.Builder()
-    .setUrl("jdbc:mysql://localhost:3306/db")
-    .setUsername("admin")
-    .setTimeout(60)
-    .build();
+Person p1 = new Person("John", 25);
+Person p2 = new Person(p1);  // Copy constructor
 ```
 
 ---
 
-## 🎯 Concurrency & OOP
+### ✅ **08. Shallow & Deep Copy**
 
-### **Thread-Safe Singleton Patterns**
+#### **Shallow Copy**
 ```java
-// Enum singleton (Thread-safe + Serialization-safe)
-public enum DatabaseManager {
-    INSTANCE;
+class Student {
+    String name;
+    int[] marks;
     
-    private Connection connection;
-    
-    public void connect() {
-        // Connection logic
-    }
-    
-    public Connection getConnection() {
-        return connection;
-    }
-}
-
-// Double-checked locking
-public class ConfigManager {
-    private static volatile ConfigManager instance;
-    private final Properties config;
-    
-    private ConfigManager() {
-        config = new Properties();
-        // Load configuration
-    }
-    
-    public static ConfigManager getInstance() {
-        if (instance == null) {
-            synchronized (ConfigManager.class) {
-                if (instance == null) {
-                    instance = new ConfigManager();
-                }
-            }
-        }
-        return instance;
-    }
-}
-
-// Bill Pugh Solution (Initialization-on-demand holder)
-public class ServiceManager {
-    private ServiceManager() {}
-    
-    private static class SingletonHelper {
-        private static final ServiceManager INSTANCE = new ServiceManager();
-    }
-    
-    public static ServiceManager getInstance() {
-        return SingletonHelper.INSTANCE;
-    }
-}
-```
-
-### **Immutable Objects & Defensive Copying**
-```java
-public final class ImmutablePerson {
-    private final String name;
-    private final List<String> hobbies;
-    private final Date birthDate;
-    
-    public ImmutablePerson(String name, List<String> hobbies, Date birthDate) {
-        this.name = name;
-        // Defensive copying for mutable objects
-        this.hobbies = Collections.unmodifiableList(new ArrayList<>(hobbies));
-        this.birthDate = new Date(birthDate.getTime());
-    }
-    
-    public String getName() { return name; }
-    
-    public List<String> getHobbies() {
-        // Return copy to maintain immutability
-        return new ArrayList<>(hobbies);
-    }
-    
-    public Date getBirthDate() {
-        // Return copy to prevent external modification
-        return new Date(birthDate.getTime());
-    }
-    
-    // Builder pattern for immutable objects
-    public static class Builder {
-        private String name;
-        private List<String> hobbies = new ArrayList<>();
-        private Date birthDate;
-        
-        public Builder setName(String name) {
-            this.name = name;
-            return this;
-        }
-        
-        public Builder addHobby(String hobby) {
-            this.hobbies.add(hobby);
-            return this;
-        }
-        
-        public Builder setBirthDate(Date birthDate) {
-            this.birthDate = birthDate;
-            return this;
-        }
-        
-        public ImmutablePerson build() {
-            return new ImmutablePerson(name, hobbies, birthDate);
-        }
-    }
-}
-```
-
----
-
-## 🧪 Advanced OOP Interview Scenarios
-
-### **Q1: Design a flexible caching system using OOP principles**
-
-```java
-// Strategy pattern for cache eviction policies
-interface EvictionPolicy<K> {
-    void recordAccess(K key);
-    K evict();
-}
-
-class LRUEvictionPolicy<K> implements EvictionPolicy<K> {
-    private final LinkedHashMap<K, Boolean> accessOrder = new LinkedHashMap<>(16, 0.75f, true);
-    
-    @Override
-    public void recordAccess(K key) {
-        accessOrder.put(key, true);
-    }
-    
-    @Override
-    public K evict() {
-        return accessOrder.isEmpty() ? null : accessOrder.keySet().iterator().next();
-    }
-}
-
-// Generic cache with composition
-public class FlexibleCache<K, V> {
-    private final Map<K, V> cache;
-    private final int maxSize;
-    private final EvictionPolicy<K> evictionPolicy;
-    
-    public FlexibleCache(int maxSize, EvictionPolicy<K> evictionPolicy) {
-        this.cache = new ConcurrentHashMap<>();
-        this.maxSize = maxSize;
-        this.evictionPolicy = evictionPolicy;
-    }
-    
-    public V get(K key) {
-        V value = cache.get(key);
-        if (value != null) {
-            evictionPolicy.recordAccess(key);
-        }
-        return value;
-    }
-    
-    public void put(K key, V value) {
-        if (cache.size() >= maxSize && !cache.containsKey(key)) {
-            K keyToEvict = evictionPolicy.evict();
-            if (keyToEvict != null) {
-                cache.remove(keyToEvict);
-            }
-        }
-        cache.put(key, value);
-        evictionPolicy.recordAccess(key);
-    }
-}
-```
-
-### **Q2: Implement a notification system supporting multiple channels**
-
-```java
-// Observer pattern with modern Java features
-public interface NotificationObserver {
-    void onNotification(Notification notification);
-}
-
-public record Notification(String message, NotificationType type, 
-                          LocalDateTime timestamp) {}
-
-public enum NotificationType {
-    INFO, WARNING, ERROR, SUCCESS
-}
-
-public class NotificationManager {
-    private final Map<NotificationType, List<NotificationObserver>> observers = 
-        new ConcurrentHashMap<>();
-    
-    public void subscribe(NotificationType type, NotificationObserver observer) {
-        observers.computeIfAbsent(type, k -> new CopyOnWriteArrayList<>()).add(observer);
-    }
-    
-    public void unsubscribe(NotificationType type, NotificationObserver observer) {
-        observers.getOrDefault(type, Collections.emptyList()).remove(observer);
-    }
-    
-    public CompletableFuture<Void> notifyAsync(Notification notification) {
-        List<NotificationObserver> typeObservers = 
-            observers.getOrDefault(notification.type(), Collections.emptyList());
-        
-        List<CompletableFuture<Void>> futures = typeObservers.stream()
-            .map(observer -> CompletableFuture.runAsync(() -> observer.onNotification(notification)))
-            .collect(Collectors.toList());
-        
-        return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
-    }
-}
-
-// Specific implementations
-class EmailNotificationObserver implements NotificationObserver {
-    @Override
-    public void onNotification(Notification notification) {
-        System.out.println("Email sent: " + notification.message());
-    }
-}
-
-class SMSNotificationObserver implements NotificationObserver {
-    @Override
-    public void onNotification(Notification notification) {
-        System.out.println("SMS sent: " + notification.message());
-    }
-}
-```
-
-### **Q3: Create a flexible validation framework**
-
-```java
-// Chain of Responsibility + Strategy pattern
-public interface Validator<T> {
-    ValidationResult validate(T object);
-    
-    default Validator<T> and(Validator<T> other) {
-        return object -> {
-            ValidationResult result = this.validate(object);
-            return result.isValid() ? other.validate(object) : result;
-        };
-    }
-}
-
-public class ValidationResult {
-    private final boolean valid;
-    private final String errorMessage;
-    
-    private ValidationResult(boolean valid, String errorMessage) {
-        this.valid = valid;
-        this.errorMessage = errorMessage;
-    }
-    
-    public static ValidationResult valid() {
-        return new ValidationResult(true, null);
-    }
-    
-    public static ValidationResult invalid(String message) {
-        return new ValidationResult(false, message);
-    }
-    
-    public boolean isValid() { return valid; }
-    public String getErrorMessage() { return errorMessage; }
-}
-
-// Usage with lambda expressions
-public class UserValidator {
-    private static final Validator<User> nameValidator = 
-        user -> user.getName() != null && !user.getName().trim().isEmpty() 
-            ? ValidationResult.valid() 
-            : ValidationResult.invalid("Name cannot be empty");
-    
-    private static final Validator<User> emailValidator = 
-        user -> user.getEmail() != null && user.getEmail().contains("@")
-            ? ValidationResult.valid()
-            : ValidationResult.invalid("Invalid email format");
-    
-    private static final Validator<User> ageValidator = 
-        user -> user.getAge() >= 0 && user.getAge() <= 150
-            ? ValidationResult.valid()
-            : ValidationResult.invalid("Age must be between 0 and 150");
-    
-    public static ValidationResult validateUser(User user) {
-        return nameValidator
-            .and(emailValidator)
-            .and(ageValidator)
-            .validate(user);
-    }
-}
-```
-
----
-
-## 🚨 Advanced Interview Traps & Edge Cases
-
-### **Trap 4**: "What happens with method resolution in complex inheritance?"
-```java
-interface A { default void test() { System.out.println("A"); }}
-interface B { default void test() { System.out.println("B"); }}
-class C implements A, B {
-    // Must override to resolve conflict
-    @Override
-    public void test() {
-        A.super.test(); // Explicitly call A's implementation
-    }
-}
-```
-
-### **Trap 5**: "Explain the difference between shallow and deep cloning"
-```java
-public class DeepCloneExample implements Cloneable {
-    private String name;
-    private List<String> hobbies;
-    
-    // Shallow clone (default)
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone(); // Only copies references
-    }
-    
-    // Deep clone implementation
-    public DeepCloneExample deepClone() {
-        DeepCloneExample copy = new DeepCloneExample();
-        copy.name = this.name; // String is immutable, safe to share
-        copy.hobbies = new ArrayList<>(this.hobbies); // Create new list
+    // Shallow copy - only copies references
+    public Student shallowCopy() {
+        Student copy = new Student();
+        copy.name = this.name;
+        copy.marks = this.marks;  // Same reference!
         return copy;
     }
 }
 ```
 
-### **Trap 6**: "How do you handle serialization with inheritance?"
+#### **Deep Copy**
 ```java
-class Parent implements Serializable {
-    private static final long serialVersionUID = 1L;
-    protected String parentField;
+class Student {
+    String name;
+    int[] marks;
+    
+    // Deep copy - creates new objects
+    public Student deepCopy() {
+        Student copy = new Student();
+        copy.name = this.name;
+        copy.marks = this.marks.clone();  // New array
+        return copy;
+    }
+}
+```
+
+---
+
+### ✅ **09. Destructors**
+Java has **Garbage Collector** - no manual destructors needed.
+
+```java
+class Resource {
+    // finalize() method (deprecated but sometimes asked)
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("Object being garbage collected");
+        super.finalize();
+    }
+    
+    // Better approach: cleanup method
+    public void cleanup() {
+        // Manual cleanup if needed
+    }
+}
+```
+
+---
+
+### ✅ **10. Inheritance** 🧬
+**Definition**: Child class inherits properties from parent class
+
+```java
+class Animal {
+    String name;
+    
+    void eat() {
+        System.out.println("Animal is eating");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Dog is barking");
+    }
+}
+
+// Usage
+Dog d = new Dog();
+d.name = "Buddy";  // Inherited from Animal
+d.eat();           // Inherited method
+d.bark();          // Own method
+```
+
+---
+
+### ✅ **11. Single Level Inheritance**
+```java
+class Parent {
+    void display() {
+        System.out.println("Parent class");
+    }
 }
 
 class Child extends Parent {
-    private static final long serialVersionUID = 1L;
-    private transient String temporaryField; // Won't be serialized
-    private String childField;
-    
-    // Custom serialization
-    private void writeObject(ObjectOutputStream out) throws IOException {
-        out.defaultWriteObject();
-        // Custom serialization logic
-    }
-    
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        in.defaultReadObject();
-        // Custom deserialization logic
-        this.temporaryField = "reconstructed";
+    void show() {
+        System.out.println("Child class");
     }
 }
 ```
 
 ---
 
-## 📋 Complete Pre-Interview Checklist
-
-### **Core OOP (Must Know Cold)** ❄️
-- [ ] 4 OOP pillars with complex real-world examples
-- [ ] Abstract class vs Interface (including Java 8+ features)
-- [ ] Method overloading vs overriding (all rules and edge cases)
-- [ ] Constructor chaining, super() keyword, initialization order
-- [ ] All access modifiers and their exact scope
-- [ ] Static vs Instance members (including static blocks)
-- [ ] final keyword (class, method, variable, parameter)
-- [ ] Object class methods (equals, hashCode, toString, clone)
-
-### **Advanced OOP Concepts** 🔥
-- [ ] Generics (bounded types, wildcards, type erasure)
-- [ ] Annotations and reflection basics
-- [ ] Functional interfaces and lambda expressions
-- [ ] Method references (static, instance, constructor)
-- [ ] Enum with methods and constructor
-- [ ] Records (Java 14+) and their use cases
-- [ ] Sealed classes (Java 17+) and pattern matching
-- [ ] Inner classes (static, non-static, local, anonymous)
-- [ ] Immutable object design patterns
-
-### **Memory & Concurrency** ⚡
-- [ ] Object lifecycle and garbage collection
-- [ ] Method hiding vs method overriding
-- [ ] Thread-safe singleton patterns
-- [ ] Immutable objects and defensive copying
-- [ ] Volatile keyword and its relation to OOP
-- [ ] Synchronization in OOP context
-
-### **Design Patterns Integration** 🎨
-- [ ] Singleton (all variations)
-- [ ] Factory pattern (simple, abstract factory)
-- [ ] Builder pattern for complex object creation
-- [ ] Observer pattern with modern Java features
-- [ ] Strategy pattern with functional interfaces
-- [ ] Decorator pattern vs inheritance
-- [ ] Chain of Responsibility pattern
-
-### **Expert Level Topics** 🎓
-- [ ] Covariant return types and contravariance
-- [ ] Default methods in interfaces and diamond problem
-- [ ] Serialization with inheritance hierarchies
-- [ ] Custom annotations and annotation processing
-- [ ] Reflection API for OOP analysis
-- [ ] Lambda expressions vs anonymous inner classes
-- [ ] Stream API integration with OOP principles
-
----
-
-## 🎯 Platform-Specific Focus Areas
-
-### **Google/Alphabet**
-- Focus on: Clean code principles, SOLID principles integration, generic programming
-- Common ask: "Design a extensible framework using OOP principles"
-
-### **Amazon**
-- Focus on: Scalability patterns, composition over inheritance, builder patterns  
-- Common ask: "Design a system that can handle millions of objects efficiently"
-
-### **Meta/Facebook**
-- Focus on: Performance implications of OOP choices, memory management
-- Common ask: "Optimize this OOP design for mobile applications"
-
-### **Apple**
-- Focus on: Design patterns, protocol-oriented programming concepts
-- Common ask: "How would you design iOS-like delegation patterns in Java?"
-
-### **Netflix/Microsoft**
-- Focus on: Reactive programming integration, functional programming with OOP
-- Common ask: "Combine OOP with functional programming paradigms"
-
-### **Startups (20+ LPA)**
-- Focus on: Practical applications, rapid prototyping with clean architecture
-- Common ask: "Build a MVP using proper OOP design that can scale later"
-
----
-
-## 🎯 Core OOP Principles (The Foundation)
-
-### 1. **Encapsulation** 🔒
-**Definition**: Data hiding + bundling data with methods that operate on it
-
-**Key Interview Points**:
-- **Access Modifiers**: `private`, `protected`, `public`, `default`
-- **Getter/Setter Design**: Validation, immutability patterns
-- **Benefits**: Security, Maintainability, Modularity
-
+### ✅ **12. Multi Level Inheritance**
 ```java
-public class BankAccount {
-    private double balance;  // Encapsulated
-    private final String accountNumber;  // Immutable
-    
-    public BankAccount(String accountNumber) {
-        this.accountNumber = accountNumber;
-        this.balance = 0.0;
-    }
-    
-    public boolean withdraw(double amount) {
-        if (amount > 0 && amount <= balance) {
-            balance -= amount;
-            return true;
-        }
-        return false;  // Validation in setter logic
-    }
-    
-    public double getBalance() { return balance; }
-    // No setter for balance - controlled access only
-}
-```
-
-**FAANG Interview Trap**: "Why not make everything public?"
-- **Answer**: Violates encapsulation, breaks contract, makes debugging harder, security risks
-
----
-
-### 2. **Inheritance** 🧬
-**Definition**: IS-A relationship, code reuse through parent-child hierarchy
-
-**Critical Interview Concepts**:
-- **Single vs Multiple**: Java supports single class inheritance, multiple interface inheritance
-- **Constructor Chaining**: `super()` calls
-- **Method Resolution**: How JVM resolves method calls
-
-```java
-// Base class
-abstract class Vehicle {
-    protected String brand;
-    protected int year;
-    
-    public Vehicle(String brand, int year) {
-        this.brand = brand;
-        this.year = year;
-    }
-    
-    public abstract void start();
-    public void displayInfo() {
-        System.out.println(brand + " " + year);
+class GrandParent {
+    void method1() {
+        System.out.println("GrandParent");
     }
 }
 
-// Derived class
-class ElectricCar extends Vehicle {
-    private int batteryCapacity;
-    
-    public ElectricCar(String brand, int year, int batteryCapacity) {
-        super(brand, year);  // Constructor chaining
-        this.batteryCapacity = batteryCapacity;
-    }
-    
-    @Override
-    public void start() {
-        System.out.println("Electric car starts silently");
-    }
-    
-    // Additional method specific to ElectricCar
-    public void chargeBattery() {
-        System.out.println("Charging battery...");
-    }
-}
-```
-
-**MAANG Follow-up**: "What's the diamond problem and how does Java solve it?"
-- **Answer**: Multiple inheritance ambiguity. Java uses interfaces with default methods (Java 8+)
-
----
-
-### 3. **Polymorphism** 🎭
-**Definition**: One interface, multiple implementations
-
-**Two Types**:
-1. **Compile-time** (Static): Method Overloading
-2. **Runtime** (Dynamic): Method Overriding
-
-#### Compile-time Polymorphism
-```java
-public class Calculator {
-    public int add(int a, int b) { return a + b; }
-    public double add(double a, double b) { return a + b; }
-    public int add(int a, int b, int c) { return a + b + c; }
-    
-    // Overloading rules: different parameters (number, type, order)
-}
-```
-
-#### Runtime Polymorphism
-```java
-class Shape {
-    public double calculateArea() { return 0; }
-}
-
-class Circle extends Shape {
-    private double radius;
-    
-    public Circle(double radius) { this.radius = radius; }
-    
-    @Override
-    public double calculateArea() {
-        return Math.PI * radius * radius;
+class Parent extends GrandParent {
+    void method2() {
+        System.out.println("Parent");
     }
 }
 
-class Rectangle extends Shape {
-    private double length, width;
-    
-    public Rectangle(double length, double width) {
-        this.length = length;
-        this.width = width;
-    }
-    
-    @Override
-    public double calculateArea() {
-        return length * width;
+class Child extends Parent {
+    void method3() {
+        System.out.println("Child");
     }
 }
 
-// Runtime polymorphism in action
-public class PolymorphismDemo {
-    public static void main(String[] args) {
-        Shape[] shapes = {
-            new Circle(5),
-            new Rectangle(4, 6),
-            new Circle(3)
-        };
-        
-        for (Shape shape : shapes) {
-            System.out.println("Area: " + shape.calculateArea());
-            // Method resolution happens at runtime
-        }
-    }
-}
-```
-
-**Senior Level Question**: "How does JVM achieve runtime polymorphism?"
-- **Answer**: Virtual Method Invocation, Method Table lookup, Dynamic Binding
-
----
-
-### 4. **Abstraction** 🎨
-**Definition**: Hiding implementation complexity, showing only essential features
-
-**Implementation Ways**:
-- **Abstract Classes**: 0-100% abstraction
-- **Interfaces**: 100% abstraction (pre-Java 8)
-
-```java
-// Abstract class example
-abstract class DatabaseConnection {
-    protected String connectionString;
-    
-    public DatabaseConnection(String connectionString) {
-        this.connectionString = connectionString;
-    }
-    
-    // Concrete method
-    public void logConnection() {
-        System.out.println("Connected to: " + connectionString);
-    }
-    
-    // Abstract methods - must be implemented by subclasses
-    public abstract boolean connect();
-    public abstract void disconnect();
-    public abstract ResultSet executeQuery(String query);
-}
-
-class MySQLConnection extends DatabaseConnection {
-    public MySQLConnection(String connectionString) {
-        super(connectionString);
-    }
-    
-    @Override
-    public boolean connect() {
-        // MySQL-specific connection logic
-        System.out.println("MySQL connection established");
-        return true;
-    }
-    
-    @Override
-    public void disconnect() {
-        System.out.println("MySQL connection closed");
-    }
-    
-    @Override
-    public ResultSet executeQuery(String query) {
-        // MySQL-specific query execution
-        return null; // Simplified
-    }
-}
+// Child has access to all methods: method1, method2, method3
 ```
 
 ---
 
-## 🏗️ Advanced OOP Concepts (FAANG Level)
-
-### **Interface Evolution (Java 8+)**
+### ✅ **13. Hierarchical Inheritance**
 ```java
-interface PaymentProcessor {
-    // Abstract method (traditional)
-    boolean processPayment(double amount);
-    
-    // Default method (Java 8+)
-    default void logTransaction(double amount) {
-        System.out.println("Processing payment: $" + amount);
-    }
-    
-    // Static method (Java 8+)
-    static boolean validateAmount(double amount) {
-        return amount > 0;
-    }
-    
-    // Private method (Java 9+)
-    private void internalLog(String message) {
-        System.out.println("Internal: " + message);
+class Animal {
+    void eat() {
+        System.out.println("Eating...");
     }
 }
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Barking...");
+    }
+}
+
+class Cat extends Animal {
+    void meow() {
+        System.out.println("Meowing...");
+    }
+}
+
+// Both Dog and Cat inherit from Animal
 ```
 
-### **Multiple Inheritance via Interfaces**
+---
+
+### ✅ **14. Hybrid Inheritance**
+**Java doesn't support multiple class inheritance** - but can achieve using **interfaces**
+
 ```java
 interface Flyable {
     void fly();
-    default void takeOff() {
-        System.out.println("Taking off...");
-    }
 }
 
 interface Swimmable {
     void swim();
-    default void dive() {
-        System.out.println("Diving...");
+}
+
+class Bird implements Flyable {
+    public void fly() {
+        System.out.println("Bird flying");
     }
 }
 
-class Duck implements Flyable, Swimmable {
-    @Override
-    public void fly() {
-        System.out.println("Duck flying");
-    }
-    
-    @Override
+class Duck extends Bird implements Swimmable {
     public void swim() {
         System.out.println("Duck swimming");
     }
 }
 ```
 
-### **Composition vs Inheritance**
-```java
-// Composition (HAS-A relationship) - Preferred approach
-class Engine {
-    private String type;
-    
-    public Engine(String type) { this.type = type; }
-    public void start() { System.out.println(type + " engine started"); }
-}
-
-class Car {
-    private Engine engine;  // Composition
-    private String model;
-    
-    public Car(String model, Engine engine) {
-        this.model = model;
-        this.engine = engine;
-    }
-    
-    public void startCar() {
-        engine.start();  // Delegating to composed object
-        System.out.println(model + " is ready to drive");
-    }
-}
-```
-
 ---
 
-## 🔥 MAANG Interview Deep Dive Questions
+### ✅ **15. Polymorphism** 🎭
+**Definition**: One interface, multiple forms
 
-### **Q1: Explain the difference between `==` and `.equals()` in the context of OOP**
-
-```java
-public class Person {
-    private String name;
-    private int age;
-    
-    public Person(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
-    
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        
-        Person person = (Person) obj;
-        return age == person.age && Objects.equals(name, person.name);
-    }
-    
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, age);
-    }
-}
-```
-
-**Answer**: 
-- `==` compares references (memory addresses)
-- `.equals()` compares object content (must be overridden)
-- Always override `hashCode()` when overriding `equals()`
-
-### **Q2: How would you design a class hierarchy for a shape drawing application?**
+**Two Types**:
+1. **Compile-time**: Method Overloading
+2. **Runtime**: Method Overriding
 
 ```java
-// Strategy pattern with OOP
-interface DrawingStrategy {
-    void draw();
-}
-
-abstract class Shape {
-    protected String color;
-    protected DrawingStrategy strategy;
-    
-    public Shape(String color) {
-        this.color = color;
-    }
-    
-    public void setDrawingStrategy(DrawingStrategy strategy) {
-        this.strategy = strategy;
-    }
-    
-    public abstract double calculateArea();
-    public abstract double calculatePerimeter();
-    
-    public void render() {
-        if (strategy != null) {
-            strategy.draw();
-        }
+class Shape {
+    void draw() {
+        System.out.println("Drawing shape");
     }
 }
 
 class Circle extends Shape {
-    private double radius;
-    
-    public Circle(String color, double radius) {
-        super(color);
-        this.radius = radius;
-    }
-    
     @Override
-    public double calculateArea() {
-        return Math.PI * radius * radius;
-    }
-    
-    @Override
-    public double calculatePerimeter() {
-        return 2 * Math.PI * radius;
-    }
-}
-```
-
-### **Q3: Explain method overriding rules and common pitfalls**
-
-**Overriding Rules**:
-1. Same method signature (name, parameters, return type)
-2. Cannot reduce visibility (`public` → `private` ❌)
-3. Can increase visibility (`protected` → `public` ✅)
-4. Cannot override `static`, `final`, or `private` methods
-5. Must handle same or fewer checked exceptions
-
-```java
-class Parent {
-    protected void display() throws IOException {
-        System.out.println("Parent display");
+    void draw() {
+        System.out.println("Drawing circle");
     }
 }
 
-class Child extends Parent {
+class Rectangle extends Shape {
     @Override
-    public void display() {  // Increased visibility ✅
-        System.out.println("Child display");
-        // Removed IOException - fewer exceptions ✅
+    void draw() {
+        System.out.println("Drawing rectangle");
     }
+}
+
+// Polymorphism in action
+Shape[] shapes = {new Circle(), new Rectangle()};
+for (Shape shape : shapes) {
+    shape.draw();  // Calls appropriate method at runtime
 }
 ```
 
 ---
 
-## 🎯 Design Patterns with OOP
+### ✅ **16. Method Overloading**
+**Same method name, different parameters**
 
-### **Singleton Pattern**
 ```java
-public class DatabaseManager {
-    private static volatile DatabaseManager instance;
-    private DatabaseManager() {}  // Private constructor
+class Calculator {
+    int add(int a, int b) {
+        return a + b;
+    }
     
-    public static DatabaseManager getInstance() {
-        if (instance == null) {
-            synchronized (DatabaseManager.class) {
-                if (instance == null) {
-                    instance = new DatabaseManager();
-                }
-            }
-        }
-        return instance;
+    double add(double a, double b) {
+        return a + b;
+    }
+    
+    int add(int a, int b, int c) {
+        return a + b + c;
     }
 }
 ```
 
-### **Factory Pattern**
-```java
-abstract class Vehicle {
-    public abstract void start();
-}
-
-class Car extends Vehicle {
-    @Override
-    public void start() { System.out.println("Car started"); }
-}
-
-class Bike extends Vehicle {
-    @Override
-    public void start() { System.out.println("Bike started"); }
-}
-
-class VehicleFactory {
-    public static Vehicle createVehicle(String type) {
-        switch (type.toLowerCase()) {
-            case "car": return new Car();
-            case "bike": return new Bike();
-            default: throw new IllegalArgumentException("Unknown vehicle type");
-        }
-    }
-}
-```
+**Rules**:
+- Different number of parameters
+- Different type of parameters  
+- Different order of parameters
 
 ---
 
-## 🚨 Common Interview Traps & Solutions
+### ✅ **17. Method Overriding**
+**Same method signature in parent and child**
 
-### **Trap 1**: "Can you override a static method?"
-**Answer**: No, static methods belong to the class, not instance. You can **hide** them, not override.
-
-### **Trap 2**: "What happens if you don't call `super()` in constructor?"
-**Answer**: Java automatically calls `super()` with no arguments. If parent doesn't have default constructor, compilation fails.
-
-### **Trap 3**: "Is Java pass-by-reference or pass-by-value?"
-**Answer**: Always pass-by-value. For objects, we pass the reference value (memory address), not the reference itself.
-
-```java
-public void modifyObject(Person person) {
-    person.setName("Modified");  // Changes original object
-    person = new Person("New");  // Only changes local reference
-}
-```
-
----
-
-## 🧬 Advanced Java OOP Concepts (Frequently Missed)
-
-### **Generics & Type Safety**
-```java
-// Generic class with bounded type parameters
-public class Repository<T extends Serializable> {
-    private List<T> items = new ArrayList<>();
-    
-    public void add(T item) {
-        items.add(item);
-    }
-    
-    public Optional<T> findById(int id) {
-        return id < items.size() ? Optional.of(items.get(id)) : Optional.empty();
-    }
-    
-    // Generic method with wildcard
-    public static void printItems(List<? extends Number> numbers) {
-        for (Number num : numbers) {
-            System.out.println(num);
-        }
-    }
-}
-
-// Usage with different types
-Repository<String> stringRepo = new Repository<>();
-Repository<Integer> intRepo = new Repository<>();
-```
-
-**FAANG Question**: "Explain type erasure and why `List<String>` and `List<Integer>` are same at runtime"
-- **Answer**: Java uses type erasure - generic type info is removed at runtime for backward compatibility
-
-### **Annotations & Reflection**
-```java
-// Custom annotation
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface Benchmarkable {
-    String value() default "";
-    int iterations() default 1;
-}
-
-// Using reflection with OOP
-public class PerformanceAnalyzer {
-    public static void analyzeClass(Class<?> clazz) {
-        Method[] methods = clazz.getDeclaredMethods();
-        
-        for (Method method : methods) {
-            if (method.isAnnotationPresent(Benchmarkable.class)) {
-                Benchmarkable benchmark = method.getAnnotation(Benchmarkable.class);
-                System.out.println("Benchmarking: " + method.getName() + 
-                                 " for " + benchmark.iterations() + " iterations");
-            }
-        }
-    }
-}
-
-class Service {
-    @Benchmarkable(iterations = 1000)
-    public void performTask() {
-        // Task implementation
-    }
-}
-```
-
-### **Functional Interfaces & Lambda Expressions**
-```java
-// Custom functional interface
-@FunctionalInterface
-public interface DataProcessor<T, R> {
-    R process(T input);
-    
-    // Default method - allowed in functional interfaces
-    default void log(String message) {
-        System.out.println("Processing: " + message);
-    }
-}
-
-// Using with lambda expressions
-public class DataService {
-    public static <T, R> List<R> processData(List<T> data, DataProcessor<T, R> processor) {
-        return data.stream()
-                   .map(processor::process)
-                   .collect(Collectors.toList());
-    }
-    
-    public static void main(String[] args) {
-        List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
-        
-        // Lambda expression implementing functional interface
-        List<Integer> lengths = processData(names, name -> name.length());
-        
-        // Method reference
-        List<String> upperNames = processData(names, String::toUpperCase);
-    }
-}
-```
-
-### **Enum with OOP Features**
-```java
-public enum PaymentMethod {
-    CREDIT_CARD("Credit Card", 2.5) {
-        @Override
-        public double calculateFee(double amount) {
-            return amount * (getRate() / 100);
-        }
-    },
-    DEBIT_CARD("Debit Card", 1.0) {
-        @Override
-        public double calculateFee(double amount) {
-            return Math.max(amount * (getRate() / 100), 0.50); // Minimum fee
-        }
-    },
-    PAYPAL("PayPal", 3.0) {
-        @Override
-        public double calculateFee(double amount) {
-            return amount * (getRate() / 100) + 0.30; // Fixed fee + percentage
-        }
-    };
-    
-    private final String displayName;
-    private final double rate;
-    
-    PaymentMethod(String displayName, double rate) {
-        this.displayName = displayName;
-        this.rate = rate;
-    }
-    
-    public abstract double calculateFee(double amount);
-    
-    public String getDisplayName() { return displayName; }
-    protected double getRate() { return rate; }
-}
-```
-
-### **Records (Java 14+) - Modern OOP**
-```java
-// Immutable data class with built-in methods
-public record Person(String name, int age, String email) {
-    // Compact constructor for validation
-    public Person {
-        if (age < 0) throw new IllegalArgumentException("Age cannot be negative");
-        if (email == null || !email.contains("@")) {
-            throw new IllegalArgumentException("Invalid email");
-        }
-    }
-    
-    // Additional methods
-    public boolean isAdult() {
-        return age >= 18;
-    }
-    
-    // Static factory method
-    public static Person createChild(String name, int age) {
-        return new Person(name, age, "no-email@example.com");
-    }
-}
-
-// Usage
-Person person = new Person("John", 25, "john@example.com");
-System.out.println(person.name()); // Auto-generated getter
-```
-
-### **Sealed Classes (Java 17+) - Controlled Inheritance**
-```java
-// Sealed class - restricted inheritance
-public sealed class Shape permits Circle, Rectangle, Triangle {
-    protected final String color;
-    
-    protected Shape(String color) {
-        this.color = color;
-    }
-    
-    public abstract double calculateArea();
-}
-
-// Permitted subclasses
-public final class Circle extends Shape {
-    private final double radius;
-    
-    public Circle(String color, double radius) {
-        super(color);
-        this.radius = radius;
-    }
-    
-    @Override
-    public double calculateArea() {
-        return Math.PI * radius * radius;
-    }
-}
-
-public final class Rectangle extends Shape {
-    private final double length, width;
-    
-    public Rectangle(String color, double length, double width) {
-        super(color);
-        this.length = length;
-        this.width = width;
-    }
-    
-    @Override
-    public double calculateArea() {
-        return length * width;
-    }
-}
-
-// Pattern matching with sealed classes
-public class ShapeCalculator {
-    public static String getShapeInfo(Shape shape) {
-        return switch (shape) {
-            case Circle c -> "Circle with radius: " + c.radius;
-            case Rectangle r -> "Rectangle: " + r.length + "x" + r.width;
-            case Triangle t -> "Triangle with base: " + t.base;
-        };
-    }
-}
-```
-
----
-
-## 🏆 Expert Level Concepts
-
-### **Covariant Return Types**
 ```java
 class Animal {
-    public Animal reproduce() {
-        return new Animal();
+    void makeSound() {
+        System.out.println("Animal makes sound");
     }
 }
 
 class Dog extends Animal {
     @Override
-    public Dog reproduce() {  // Covariant return type
-        return new Dog();
+    void makeSound() {
+        System.out.println("Dog barks");
     }
 }
 ```
 
-### **Inner Classes & Encapsulation**
+**Rules**:
+- Same method signature
+- Cannot reduce visibility (`public` → `private` ❌)
+- Cannot override `static`, `final`, `private` methods
+
+---
+
+### ✅ **18. Packages in Java**
 ```java
-public class OuterClass {
-    private String outerField = "Outer";
+// Creating package
+package com.company.project;
+
+// Importing
+import java.util.ArrayList;
+import java.util.*;  // Import all
+
+public class MyClass {
+    // Class content
+}
+```
+
+**Benefits**: Organization, namespace, access control
+
+---
+
+### ✅ **19. Abstraction** 🎨
+**Definition**: Hiding implementation details, showing only functionality
+
+```java
+abstract class Vehicle {
+    abstract void start();  // Abstract method
     
-    class InnerClass {
-        public void accessOuter() {
-            System.out.println(outerField);  // Direct access to private field
-        }
+    void stop() {  // Concrete method
+        System.out.println("Vehicle stopped");
     }
-    
-    static class StaticNestedClass {
-        // Cannot access non-static outer members directly
+}
+
+class Car extends Vehicle {
+    @Override
+    void start() {
+        System.out.println("Car started with key");
     }
 }
 ```
 
 ---
 
-## 📋 Pre-Interview Checklist
+### ✅ **20. Abstract Classes**
+- Cannot be instantiated
+- Can have abstract and concrete methods
+- Can have constructors
 
-### **Must Know Cold** ❄️
-- [ ] 4 OOP pillars with real-world examples
-- [ ] Abstract class vs Interface (with Java 8+ features)
-- [ ] Method overloading vs overriding rules
-- [ ] Constructor chaining and `super()` keyword
-- [ ] Access modifiers and their scope
-- [ ] Static vs Instance members
-- [ ] `final` keyword usage (class, method, variable)
+```java
+abstract class Shape {
+    String color;
+    
+    // Constructor in abstract class
+    public Shape(String color) {
+        this.color = color;
+    }
+    
+    abstract double calculateArea();  // Must be implemented
+    
+    void displayColor() {  // Can have concrete methods
+        System.out.println("Color: " + color);
+    }
+}
 
-### **Advanced Topics** 🔥
-- [ ] Composition vs Inheritance trade-offs
-- [ ] Covariant return types
-- [ ] Method hiding vs Method overriding
-- [ ] Inner classes and their types
-- [ ] Default methods in interfaces
-- [ ] Diamond problem resolution
-
-### **Design Patterns** 🎨
-- [ ] Singleton (thread-safe implementation)
-- [ ] Factory pattern
-- [ ] Strategy pattern
-- [ ] Observer pattern basics
-
----
-
-## 🎯 Sample FAANG Questions
-
-### **Google/Microsoft Style**
-"Design a class hierarchy for a media player that can play different formats (MP3, MP4, AVI). Consider extensibility and maintainability."
-
-### **Amazon Style**
-"Implement a caching system using OOP principles. How would you handle cache eviction policies?"
-
-### **Meta/Apple Style**
-"Explain how you would use composition to design a flexible notification system for different platforms (Email, SMS, Push)."
+class Circle extends Shape {
+    double radius;
+    
+    public Circle(String color, double radius) {
+        super(color);
+        this.radius = radius;
+    }
+    
+    @Override
+    double calculateArea() {
+        return Math.PI * radius * radius;
+    }
+}
+```
 
 ---
 
-## 💡 Pro Tips for Interview Success
+### ✅ **21. Interfaces**
+- 100% abstraction (before Java 8)
+- All methods are `public abstract` by default
+- All variables are `public static final`
 
-1. **Start with Real-world Analogy**: "Abstraction is like driving a car - you use steering wheel without knowing engine internals"
+```java
+interface Drawable {
+    void draw();  // public abstract by default
+    
+    // Java 8+ features
+    default void print() {
+        System.out.println("Printing...");
+    }
+    
+    static void info() {
+        System.out.println("Drawable interface");
+    }
+}
 
-2. **Code First, Explain Later**: Write clean, compilable code snippets
+class Rectangle implements Drawable {
+    @Override
+    public void draw() {
+        System.out.println("Drawing rectangle");
+    }
+}
+```
 
-3. **Discuss Trade-offs**: "Inheritance provides code reuse but creates tight coupling. Composition offers flexibility but requires more code"
+### **Abstract Class vs Interface**
 
-4. **Show Depth**: Mention related concepts like SOLID principles, design patterns
-
-5. **Ask Clarifying Questions**: "Should this be thread-safe?" "Are there performance constraints?"
+| Feature | Abstract Class | Interface |
+|---------|---------------|-----------|
+| Instantiation | ❌ Cannot | ❌ Cannot |
+| Constructor | ✅ Yes | ❌ No |
+| Multiple Inheritance | ❌ No | ✅ Yes |
+| Method Types | Abstract + Concrete | All abstract (pre-Java 8) |
 
 ---
 
-## 🚀 Ready for MAANG Success!
+### ✅ **22. Static Keyword**
+**Belongs to class, not instance**
 
-**Remember**: OOP is not just about syntax - it's about designing maintainable, scalable, and robust software systems. Focus on the **why** behind each concept, not just the **how**.
+```java
+class Student {
+    static String schoolName = "ABC School";  // Static variable
+    String studentName;  // Instance variable
+    
+    static void displaySchool() {  // Static method
+        System.out.println("School: " + schoolName);
+        // Cannot access instance variables here
+    }
+    
+    void displayStudent() {  // Instance method
+        System.out.println("Student: " + studentName);
+        System.out.println("School: " + schoolName);  // Can access static
+    }
+}
 
-Good luck with your interviews! 🍀
+// Usage
+Student.displaySchool();  // Called with class name
+Student s1 = new Student();
+s1.displayStudent();
+```
+
+---
+
+### ✅ **23. Super Keyword**
+**Refers to parent class**
+
+```java
+class Parent {
+    String name = "Parent";
+    
+    void display() {
+        System.out.println("Parent method");
+    }
+}
+
+class Child extends Parent {
+    String name = "Child";
+    
+    void display() {
+        super.display();  // Calls parent method
+        System.out.println("Child method");
+        System.out.println("Parent name: " + super.name);
+        System.out.println("Child name: " + this.name);
+    }
+    
+    Child() {
+        super();  // Calls parent constructor
+    }
+}
+```
+
+---
+
+### ✅ **24. This Keyword**
+**Refers to current object**
+
+```java
+class Person {
+    String name;
+    int age;
+    
+    public Person(String name, int age) {
+        this.name = name;  // Resolves naming conflict
+        this.age = age;
+    }
+    
+    void display() {
+        System.out.println("Name: " + this.name);
+        this.printAge();  // Calls method of current object
+    }
+    
+    void printAge() {
+        System.out.println("Age: " + age);
+    }
+    
+    Person getThis() {
+        return this;  // Returns current object
+    }
+}
+```
+
+---
+
+## 🎯 Quick Interview Questions & Answers
+
+### **Q1: Can you achieve multiple inheritance in Java?**
+**A**: No, through classes. Yes, through interfaces.
+
+### **Q2: Difference between method overloading and overriding?**
+**A**: 
+- **Overloading**: Same name, different parameters (compile-time)
+- **Overriding**: Same signature, different implementation (runtime)
+
+### **Q3: Why is Java "pass-by-value"?**
+**A**: Java passes the **value of reference** for objects, not the reference itself.
+
+### **Q4: Can abstract class have constructor?**
+**A**: Yes, but cannot be instantiated directly.
+
+### **Q5: Can interface have variables?**
+**A**: Yes, but they are `public static final` by default.
+
+---
+
+## ✅ Final Checklist
+
+- [ ] Classes & Objects creation
+- [ ] All 4 access modifiers
+- [ ] Encapsulation with getters/setters
+- [ ] Constructor types and overloading
+- [ ] Shallow vs Deep copy
+- [ ] Inheritance types (single, multilevel, hierarchical)
+- [ ] Polymorphism (overloading vs overriding)
+- [ ] Abstraction (abstract classes vs interfaces)
+- [ ] Static, super, this keywords usage
+
+**🎯 This covers 90% of OOP questions in MAANG interviews!**
