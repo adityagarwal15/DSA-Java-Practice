@@ -537,19 +537,25 @@ class Circle extends Shape {
 ---
 
 ### ✅ **21. Interfaces**
-- 100% abstraction (before Java 8)
-- All methods are `public abstract` by default
-- All variables are `public static final`
+
+* Provides **100% abstraction** (before Java 8)
+* Allows **multiple inheritance**
+* All methods are `public abstract` by default (before Java 8)
+* All variables are `public static final` (constants)
+* From **Java 8 onward**, interfaces can also have:
+
+  * `default` methods (with body)
+  * `static` methods
 
 ```java
 interface Drawable {
     void draw();  // public abstract by default
-    
+
     // Java 8+ features
     default void print() {
         System.out.println("Printing...");
     }
-    
+
     static void info() {
         System.out.println("Drawable interface");
     }
@@ -563,51 +569,144 @@ class Rectangle implements Drawable {
 }
 ```
 
-### **Abstract Class vs Interface**
+---
 
-| Feature | Abstract Class | Interface |
-|---------|---------------|-----------|
-| Instantiation | ❌ Cannot | ❌ Cannot |
-| Constructor | ✅ Yes | ❌ No |
-| Multiple Inheritance | ❌ No | ✅ Yes |
-| Method Types | Abstract + Concrete | All abstract (pre-Java 8) |
+### ✅ **Multiple Inheritance via Interface**
+
+```java
+interface A {
+    void showA();
+}
+
+interface B {
+    void showB();
+}
+
+// Class implements both interfaces
+class C implements A, B {
+    public void showA() {
+        System.out.println("Inside showA from interface A");
+    }
+
+    public void showB() {
+        System.out.println("Inside showB from interface B");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        C obj = new C();
+        obj.showA();
+        obj.showB();
+    }
+}
+```
+
+🧠 In Java, **multiple inheritance** is not allowed with classes (to avoid conflicts), but **it is allowed with interfaces**. This way, a class can follow multiple "contracts" at once.
+
+---
+
+### ✅ **Abstract Class vs Interface**
+
+| Feature                  | **Abstract Class**  | **Interface (After Java 8)**      |
+| ------------------------ | ------------------- | --------------------------------- |
+| **Instantiation**        | ❌ Cannot            | ❌ Cannot                          |
+| **Constructor**          | ✅ Yes               | ❌ No                              |
+| **Multiple Inheritance** | ❌ No                | ✅ Yes                             |
+| **Method Types**         | Abstract + Concrete | Abstract, `default`, and `static` |
+| **Fields/Variables**     | Normal fields       | `public static final` only        |
 
 ---
 
 ### ✅ **22. Static Keyword**
-**Belongs to class, not instance**
+**Belongs to class, not instance(obj)**
 
 ```java
-class Student {
-    static String schoolName = "ABC School";  // Static variable
-    String studentName;  // Instance variable
-    
-    static void displaySchool() {  // Static method
-        System.out.println("School: " + schoolName);
-        // Cannot access instance variables here
+public class StaticExample {
+
+    // 🔹 Static variable (shared by all instances)
+    static int count = 0;
+
+    // 🔹 Instance variable (unique to each object)
+    String name;
+
+    // 🔹 Static block (runs once when class is loaded)
+    static {
+        System.out.println("🔁 Static block executed");
     }
-    
-    void displayStudent() {  // Instance method
-        System.out.println("Student: " + studentName);
-        System.out.println("School: " + schoolName);  // Can access static
+
+    // 🔹 Constructor
+    StaticExample(String name) {
+        this.name = name;
+        count++;  // Increments static variable
+    }
+
+    // 🔹 Static method
+    static void displayCount() {
+        System.out.println("📦 Total objects created: " + count);
+        // ❌ Can't access 'name' here (non-static)
+    }
+
+    // 🔹 Instance method
+    void displayName() {
+        System.out.println("👤 Name: " + name);
+    }
+
+    // 🔹 Static nested class
+    static class StaticNested {
+        void message() {
+            System.out.println("📨 Inside static nested class");
+        }
+    }
+
+    // 🔹 Main method
+    public static void main(String[] args) {
+        StaticExample.displayCount(); // ✅ Calling static method without object
+
+        StaticExample s1 = new StaticExample("Aditya");
+        StaticExample s2 = new StaticExample("Aarav");
+
+        s1.displayName();   // 👤 Output: Aditya
+        s2.displayName();   // 👤 Output: Aarav
+
+        StaticExample.displayCount(); // 📦 Output: 2
+
+        // ✅ Using static nested class
+        StaticExample.StaticNested nested = new StaticExample.StaticNested();
+        nested.message();  // 📨 Output: Inside static nested class
     }
 }
 
-// Usage
-Student.displaySchool();  // Called with class name
-Student s1 = new Student();
-s1.displayStudent();
 ```
 
 ---
 
 ### ✅ **23. Super Keyword**
-**Refers to parent class**
+
+The `super` keyword refers to the **parent class** in Java.
+
+---
+
+#### 🔑 **Uses of `super`:**
+
+* `super.method()` – Call parent class method
+* `super.variable` – Access parent class variable
+* `super()` – Call parent class constructor (**must be the first line in a constructor**)
+
+---
+
+#### 💡 **Code Example**
 
 ```java
 class Parent {
     String name = "Parent";
-    
+
+    // 🔹 Parent class constructor
+    Parent() {
+        System.out.println("Parent constructor called");
+    }
+
+    // 🔹 Parent method
     void display() {
         System.out.println("Parent method");
     }
@@ -615,16 +714,26 @@ class Parent {
 
 class Child extends Parent {
     String name = "Child";
-    
-    void display() {
-        super.display();  // Calls parent method
-        System.out.println("Child method");
-        System.out.println("Parent name: " + super.name);
-        System.out.println("Child name: " + this.name);
-    }
-    
+
+    // 🔹 Child constructor
     Child() {
-        super();  // Calls parent constructor
+        super();  // Calls Parent constructor
+        System.out.println("Child constructor called");
+    }
+
+    // 🔹 Child method
+    void display() {
+        super.display();  // Calls Parent method
+        System.out.println("Child method");
+        System.out.println("Parent name: " + super.name);  // Access parent variable
+        System.out.println("Child name: " + this.name);    // Access current variable
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Child obj = new Child();  // Constructors get called
+        obj.display();            // Methods get called
     }
 }
 ```
@@ -632,53 +741,377 @@ class Child extends Parent {
 ---
 
 ### ✅ **24. This Keyword**
-**Refers to current object**
+**Refers to current object of the class**
 
 ```java
 class Person {
     String name;
     int age;
-    
+
+    // 👷 Constructor with parameters
     public Person(String name, int age) {
-        this.name = name;  // Resolves naming conflict
+        // 🟡 Here, local variable 'name' is same as instance variable 'name'
+        // ⚠️ If you just write: name = name;  ← it won’t work correctly!
+        // ✅ So we use this.name to mean: "instance variable name"
+        this.name = name;
         this.age = age;
     }
-    
+
     void display() {
+        // 🔹 this.name is same as just writing name here (no conflict now)
         System.out.println("Name: " + this.name);
-        this.printAge();  // Calls method of current object
+        this.printAge();  // Calls another method of same object
     }
-    
+
     void printAge() {
         System.out.println("Age: " + age);
     }
-    
+
     Person getThis() {
-        return this;  // Returns current object
+        return this;  // Returns the current object
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating a new Person object
+        Person p1 = new Person("Aditya", 21);
+
+        // Calling display method
+        p1.display();
+
+        // Using getThis() method
+        Person p2 = p1.getThis();
+
+        // Check if p1 and p2 are same
+        System.out.println("Same object? " + (p1 == p2));  // true
+    }
+}
+
+
+```
+
+---
+
+### ✅ **25. Basics of Exception Handling in Java**
+
+#### 🔸 **What is Exception Handling?**
+
+Exception handling in Java is a **mechanism** to handle **runtime errors**, allowing the normal flow of the program to continue.
+
+### 🔹 **Basic Syntax:**
+
+```java
+try {
+    // Code that may throw an exception
+} catch (ExceptionType name) {
+    // Code to handle the exception
+}
+```
+
+You can also add:
+
+* `finally` block (optional): Executes **always**, whether an exception occurred or not.
+* Multiple `catch` blocks.
+
+### 🔹 **Example:**
+
+```java
+public class Example {
+    public static void main(String[] args) {
+        try {
+            int[] numbers = {1, 2, 3};
+            System.out.println(numbers[5]);  // Error: index out of bounds
+        } catch (Exception e) {
+            System.out.println("Something went wrong: " + e);
+        } finally {
+            System.out.println("The 'try catch' block is finished.");
+        }
     }
 }
 ```
+
+#### ✅ **Output:**
+
+```
+Something went wrong: java.lang.ArrayIndexOutOfBoundsException: 5
+The 'try catch' block is finished.
+```
+
+### 🔹 **Key Points:**
+
+* `try` block contains code that may throw an exception.
+* `catch` handles the error.
+* `finally` always runs (optional but useful for clean-up like closing files).
 
 ---
 
 ## 🎯 Quick Interview Questions & Answers
 
+---
+
 ### **Q1: Can you achieve multiple inheritance in Java?**
+
 **A**: No, through classes. Yes, through interfaces.
 
+---
+
 ### **Q2: Difference between method overloading and overriding?**
-**A**: 
-- **Overloading**: Same name, different parameters (compile-time)
-- **Overriding**: Same signature, different implementation (runtime)
+
+**A**:
+
+* **Overloading**: Same name, different parameters (compile-time)
+* **Overriding**: Same signature, different implementation (runtime)
+
+---
 
 ### **Q3: Why is Java "pass-by-value"?**
+
 **A**: Java passes the **value of reference** for objects, not the reference itself.
 
+---
+
 ### **Q4: Can abstract class have constructor?**
+
 **A**: Yes, but cannot be instantiated directly.
 
+---
+
 ### **Q5: Can interface have variables?**
+
 **A**: Yes, but they are `public static final` by default.
+
+---
+
+### **Q6: Which access modifiers are allowed on classes, methods, and variables?**
+
+| Access Modifier         | Top-Level Class | Nested Class | Constructor | Method | Field (Variable) |
+| ----------------------- | --------------- | ------------ | ----------- | ------ | ---------------- |
+| `private`               | ❌ No            | ✅ Yes        | ✅ Yes       | ✅ Yes  | ✅ Yes            |
+| *default* (no modifier) | ✅ Yes           | ✅ Yes        | ✅ Yes       | ✅ Yes  | ✅ Yes            |
+| `protected`             | ❌ No            | ✅ Yes        | ✅ Yes       | ✅ Yes  | ✅ Yes            |
+| `public`                | ✅ Yes           | ✅ Yes        | ✅ Yes       | ✅ Yes  | ✅ Yes            |
+
+**Note:**
+
+* Top-level classes allow only `public` or *default* (package-private).
+* Nested classes, constructors, methods, and fields support all access modifiers.
+
+---
+
+### **Q7: Which of the following is a correct statement?**
+
+*(Assume both classes are in the same package)*
+
+```java
+class Vehicle { }
+class Car extends Vehicle { }
+```
+
+Now choose the valid object creation statement:
+
+✅ `Car c = new Car();` → **Correct**
+✅ `Vehicle v = new Vehicle();` → **Correct**
+✅ `Vehicle v = new Car();` → **Correct (Upcasting allowed)**
+❌ `Car c = new Vehicle();` → **Incorrect (Cannot downcast directly)**
+
+---
+
+### **Q8: What will be the output of this code?**
+
+```java
+public class InheritanceTest {
+    public static void main(String[] args) {
+        Vehicle obj1 = new Car();
+        obj1.print();   // Polymorphism: Calls Car’s method
+
+        Vehicle obj2 = new Vehicle();
+        obj2.print();   // Calls Vehicle’s method
+    }
+}
+
+class Vehicle {
+    void print() {
+        System.out.println("Base class (Vehicle)");
+    }
+}
+
+class Car extends Vehicle {
+    @Override
+    void print() {
+        System.out.println("Derived class (Car)");
+    }
+}
+```
+
+### ✅ **Output:**
+
+```
+Derived class (Car)
+Base class (Vehicle)
+```
+
+**Explanation:**
+
+* `obj1` refers to a `Car` object, so the **overridden `print()`** method is called — this is **runtime polymorphism**.
+* `obj2` is a `Vehicle` object, so its own method runs.
+
+---
+
+### **Q9: What will be the output of this code?**
+
+```java
+public class Inheritance {
+    public static void main(String[] args) {
+        Vehicle obj1 = new Car();
+        obj1.print1();   // ❌ Compile-time Error
+
+        Vehicle obj2 = new Vehicle();
+        obj2.print();
+    }
+}
+
+class Vehicle {
+    void print() {
+        System.out.println("Base class (Vehicle)");
+    }
+}
+
+class Car extends Vehicle {
+    void print1() {
+        System.out.println("Derived class (Car)");
+    }
+}
+```
+
+### ❌ **Output: Compile-time Error**
+
+**Explanation:**
+
+* `obj1` is declared as type `Vehicle`, which has **no method** named `print1()`.
+* Even though `obj1` is actually a `Car` object, **only methods available in the reference type** (`Vehicle`) can be called without casting.
+
+**Fix:**
+
+```java
+((Car) obj1).print1();  // ✅ Cast required to access `print1()`
+```
+
+---
+
+### **Q10: Which line has the error?**
+
+```java
+class Test {
+    static int marks;
+
+    void set_marks(int marks) {
+        this.marks = marks;
+    }
+}
+
+public class OOPS {
+    public static void main(String[] args) {
+        Test t = new Test();             // ✅ Line 1
+        t.set_marks(98);                 // ✅ Line 2
+        System.out.print(Test.marks);    // ✅ Line 3
+    }
+}
+```
+
+### ✅ **Output:**
+
+```
+98
+```
+
+So, which line has error?
+❌ **None** — all lines are correct.
+
+> 💡 `marks` is static, so it can be accessed using the class name directly without creating an object.
+
+---
+
+### **Q11: What will be the output of the following code?**
+
+```java
+class Test {
+    static int a = 10;
+    static int b;
+
+    static void changeB() {
+       b = a * 3;
+    }
+}
+
+public class OOPS {
+    public static void main(String[] args) {
+        Test t = new Test();
+        t.changeB();
+        System.out.print(Test.a + Test.b);
+    }
+}
+```
+
+### ✅ **Output:**
+
+```
+40
+```
+
+**Explanation:**
+
+* `a` and `b` are static, so they belong to the **class**, not the instance.
+* `changeB()` sets `b = 30`.
+* Final print: `10 + 30 = 40`
+
+---
+
+### **Q12: Look at the following code and choose the right access modifier for the word:**
+
+**`Shape.java`**
+
+```java
+public class Shape {
+    protected void display() {
+        System.out.println("Display-base");
+    }
+}
+```
+
+**`Circle.java`**
+
+```java
+public class Circle extends Shape {
+    <access-modifier> void display() {
+        System.out.println("Display-derived");
+    }
+}
+```
+
+### ❓**Question**:
+
+What access modifier(s) can replace `<access-modifier>` in `Circle` without causing a compile-time error?
+
+
+### ✅ **Answer:**
+
+You can use:
+
+* `protected` ✅
+* `public` ✅
+
+You **cannot** use:
+
+* `default` (package-private) ❌ — only works **if both classes are in the same package**
+* `private` ❌ — cannot reduce visibility while overriding
+
+### 📌 **Rule**:
+
+> **When overriding a method**, the subclass **cannot reduce** the access level of the method.
+
+* `protected` (superclass) → must be overridden with `protected` or `public`
+* Overriding with `private` will cause a **compile-time error**
 
 ---
 
