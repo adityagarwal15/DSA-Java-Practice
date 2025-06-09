@@ -619,28 +619,64 @@ public class Main {
 ---
 
 ### ✅ **22. Static Keyword**
-**Belongs to class, not instance**
+**Belongs to class, not instance(obj)**
 
 ```java
-class Student {
-    static String schoolName = "ABC School";  // Static variable
-    String studentName;  // Instance variable
-    
-    static void displaySchool() {  // Static method
-        System.out.println("School: " + schoolName);
-        // Cannot access instance variables here
+public class StaticExample {
+
+    // 🔹 Static variable (shared by all instances)
+    static int count = 0;
+
+    // 🔹 Instance variable (unique to each object)
+    String name;
+
+    // 🔹 Static block (runs once when class is loaded)
+    static {
+        System.out.println("🔁 Static block executed");
     }
-    
-    void displayStudent() {  // Instance method
-        System.out.println("Student: " + studentName);
-        System.out.println("School: " + schoolName);  // Can access static
+
+    // 🔹 Constructor
+    StaticExample(String name) {
+        this.name = name;
+        count++;  // Increments static variable
+    }
+
+    // 🔹 Static method
+    static void displayCount() {
+        System.out.println("📦 Total objects created: " + count);
+        // ❌ Can't access 'name' here (non-static)
+    }
+
+    // 🔹 Instance method
+    void displayName() {
+        System.out.println("👤 Name: " + name);
+    }
+
+    // 🔹 Static nested class
+    static class StaticNested {
+        void message() {
+            System.out.println("📨 Inside static nested class");
+        }
+    }
+
+    // 🔹 Main method
+    public static void main(String[] args) {
+        StaticExample.displayCount(); // ✅ Calling static method without object
+
+        StaticExample s1 = new StaticExample("Aditya");
+        StaticExample s2 = new StaticExample("Aarav");
+
+        s1.displayName();   // 👤 Output: Aditya
+        s2.displayName();   // 👤 Output: Aarav
+
+        StaticExample.displayCount(); // 📦 Output: 2
+
+        // ✅ Using static nested class
+        StaticExample.StaticNested nested = new StaticExample.StaticNested();
+        nested.message();  // 📨 Output: Inside static nested class
     }
 }
 
-// Usage
-Student.displaySchool();  // Called with class name
-Student s1 = new Student();
-s1.displayStudent();
 ```
 
 ---
