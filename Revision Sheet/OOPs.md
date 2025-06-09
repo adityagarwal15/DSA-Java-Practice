@@ -793,24 +793,117 @@ public class Main {
 
 ---
 
+Here’s the updated version of your **Quick Interview Questions & Answers**:
+
+---
+
 ## 🎯 Quick Interview Questions & Answers
 
 ### **Q1: Can you achieve multiple inheritance in Java?**
+
 **A**: No, through classes. Yes, through interfaces.
 
+---
+
 ### **Q2: Difference between method overloading and overriding?**
-**A**: 
-- **Overloading**: Same name, different parameters (compile-time)
-- **Overriding**: Same signature, different implementation (runtime)
+
+**A**:
+
+* **Overloading**: Same name, different parameters (compile-time)
+* **Overriding**: Same signature, different implementation (runtime)
+
+---
 
 ### **Q3: Why is Java "pass-by-value"?**
+
 **A**: Java passes the **value of reference** for objects, not the reference itself.
 
+---
+
 ### **Q4: Can abstract class have constructor?**
+
 **A**: Yes, but cannot be instantiated directly.
 
+---
+
 ### **Q5: Can interface have variables?**
+
 **A**: Yes, but they are `public static final` by default.
+
+---
+
+### **Q6: Which access modifiers are allowed on classes, methods, and variables?**
+
+| Access Modifier         | Top-Level Class | Nested Class | Constructor | Method | Field (Variable) |
+| ----------------------- | --------------- | ------------ | ----------- | ------ | ---------------- |
+| `private`               | ❌ No            | ✅ Yes        | ✅ Yes       | ✅ Yes  | ✅ Yes            |
+| *default* (no modifier) | ✅ Yes           | ✅ Yes        | ✅ Yes       | ✅ Yes  | ✅ Yes            |
+| `protected`             | ❌ No            | ✅ Yes        | ✅ Yes       | ✅ Yes  | ✅ Yes            |
+| `public`                | ✅ Yes           | ✅ Yes        | ✅ Yes       | ✅ Yes  | ✅ Yes            |
+
+**Note:**
+
+* Top-level classes allow only `public` or *default* (package-private).
+* Nested classes, constructors, methods, and fields support all access modifiers.
+
+---
+
+### **Q7: Which of the following is a correct statement?**
+
+*(Assume both classes are in the same package)*
+
+```java
+class Vehicle { }
+class Car extends Vehicle { }
+```
+
+Now choose the valid object creation statement:
+
+✅ `Car c = new Car();` → **Correct**
+✅ `Vehicle v = new Vehicle();` → **Correct**
+✅ `Vehicle v = new Car();` → **Correct (Upcasting allowed)**
+❌ `Car c = new Vehicle();` → **Incorrect (Cannot downcast directly)**
+
+---
+
+### **Q8: What will be the output of this code?**
+
+```java
+public class InheritanceTest {
+    public static void main(String[] args) {
+        Vehicle obj1 = new Car();
+        obj1.print();   // Polymorphism: Calls Car’s method
+
+        Vehicle obj2 = new Vehicle();
+        obj2.print();   // Calls Vehicle’s method
+    }
+}
+
+class Vehicle {
+    void print() {
+        System.out.println("Base class (Vehicle)");
+    }
+}
+
+class Car extends Vehicle {
+    @Override
+    void print() {
+        System.out.println("Derived class (Car)");
+    }
+}
+```
+
+### ✅ **Output:**
+
+```
+Derived class (Car)
+Base class (Vehicle)
+```
+
+**Explanation:**
+
+* `obj1` is of type `Vehicle` but refers to `Car`, so the **overridden `print()`** method in `Car` is called — this is **runtime polymorphism**.
+* `obj2` is a regular `Vehicle` object, so it calls its own `print()` method.
 
 ---
 
