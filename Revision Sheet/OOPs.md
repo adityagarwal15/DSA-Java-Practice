@@ -772,6 +772,23 @@ class Person {
     }
 }
 
+public class Main {
+    public static void main(String[] args) {
+        // Creating a new Person object
+        Person p1 = new Person("Aditya", 21);
+
+        // Calling display method
+        p1.display();
+
+        // Using getThis() method
+        Person p2 = p1.getThis();
+
+        // Check if p1 and p2 are same
+        System.out.println("Same object? " + (p1 == p2));  // true
+    }
+}
+
+
 ```
 
 ---
