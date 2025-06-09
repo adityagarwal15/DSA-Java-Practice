@@ -537,19 +537,25 @@ class Circle extends Shape {
 ---
 
 ### ✅ **21. Interfaces**
-- 100% abstraction (before Java 8)
-- All methods are `public abstract` by default
-- All variables are `public static final`
+
+* Provides **100% abstraction** (before Java 8)
+* Allows **multiple inheritance**
+* All methods are `public abstract` by default (before Java 8)
+* All variables are `public static final` (constants)
+* From **Java 8 onward**, interfaces can also have:
+
+  * `default` methods (with body)
+  * `static` methods
 
 ```java
 interface Drawable {
     void draw();  // public abstract by default
-    
+
     // Java 8+ features
     default void print() {
         System.out.println("Printing...");
     }
-    
+
     static void info() {
         System.out.println("Drawable interface");
     }
@@ -563,14 +569,52 @@ class Rectangle implements Drawable {
 }
 ```
 
-### **Abstract Class vs Interface**
+---
 
-| Feature | Abstract Class | Interface |
-|---------|---------------|-----------|
-| Instantiation | ❌ Cannot | ❌ Cannot |
-| Constructor | ✅ Yes | ❌ No |
-| Multiple Inheritance | ❌ No | ✅ Yes |
-| Method Types | Abstract + Concrete | All abstract (pre-Java 8) |
+### ✅ **Multiple Inheritance via Interface**
+
+```java
+interface A {
+    void showA();
+}
+
+interface B {
+    void showB();
+}
+
+// Class implements both interfaces
+class C implements A, B {
+    public void showA() {
+        System.out.println("Inside showA from interface A");
+    }
+
+    public void showB() {
+        System.out.println("Inside showB from interface B");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        C obj = new C();
+        obj.showA();
+        obj.showB();
+    }
+}
+```
+
+🧠 In Java, **multiple inheritance** is not allowed with classes (to avoid conflicts), but **it is allowed with interfaces**. This way, a class can follow multiple "contracts" at once.
+
+---
+
+### ✅ **Abstract Class vs Interface**
+
+| Feature                  | **Abstract Class**  | **Interface (After Java 8)**      |
+| ------------------------ | ------------------- | --------------------------------- |
+| **Instantiation**        | ❌ Cannot            | ❌ Cannot                          |
+| **Constructor**          | ✅ Yes               | ❌ No                              |
+| **Multiple Inheritance** | ❌ No                | ✅ Yes                             |
+| **Method Types**         | Abstract + Concrete | Abstract, `default`, and `static` |
+| **Fields/Variables**     | Normal fields       | `public static final` only        |
 
 ---
 
