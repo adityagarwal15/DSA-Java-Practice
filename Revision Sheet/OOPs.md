@@ -793,10 +793,6 @@ public class Main {
 
 ---
 
-Here’s the updated version of your **Quick Interview Questions & Answers**:
-
----
-
 ## 🎯 Quick Interview Questions & Answers
 
 ### **Q1: Can you achieve multiple inheritance in Java?**
@@ -902,8 +898,74 @@ Base class (Vehicle)
 
 **Explanation:**
 
-* `obj1` is of type `Vehicle` but refers to `Car`, so the **overridden `print()`** method in `Car` is called — this is **runtime polymorphism**.
-* `obj2` is a regular `Vehicle` object, so it calls its own `print()` method.
+* `obj1` refers to a `Car` object, so the **overridden `print()`** method is called — this is **runtime polymorphism**.
+* `obj2` is a `Vehicle` object, so its own method runs.
+
+---
+
+### **Q9: What will be the output of this code?**
+
+```java
+public class Inheritance {
+    public static void main(String[] args) {
+        Vehicle obj1 = new Car();
+        obj1.print1();   // ❌ Compile-time Error
+
+        Vehicle obj2 = new Vehicle();
+        obj2.print();
+    }
+}
+
+class Vehicle {
+    void print() {
+        System.out.println("Base class (Vehicle)");
+    }
+}
+
+class Car extends Vehicle {
+    void print1() {
+        System.out.println("Derived class (Car)");
+    }
+}
+```
+
+### ❌ **Output: Compile-time Error**
+
+**Explanation:**
+
+* `obj1` is declared as type `Vehicle`, which has **no method** named `print1()`.
+* Even though `obj1` is actually a `Car` object, **only methods available in the reference type** (`Vehicle`) can be called without casting.
+* Fix:
+
+  ```java
+  ((Car) obj1).print1();  // ✅ Cast required to access `print1()`
+  ```
+
+Q10: Which line has the error?
+
+```java
+class Test {
+    static int marks;
+
+    void set_marks(int marks) {
+        this.marks = marks;
+    }
+}
+
+public class OOPS {
+    public static void main(String[] args) {
+        Test t = new Test();             // ✅ Line 1
+        t.set_marks(98);                 // ✅ Line 2
+        System.out.print(Test.marks);    // ✅ Line 3   // this is correct because since int marks is static, it can be called directly by a class without an object
+    }
+}
+```
+✅ Output:
+```
+98
+So, which line has error?
+❌ None — all lines are correct.
+````
 
 ---
 
