@@ -793,6 +793,65 @@ public class Main {
 
 ---
 
+### ✅ **Q5: Basics of Exception Handling in Java**
+
+#### 🔸 **What is Exception Handling?**
+
+Exception handling in Java is a **mechanism** to handle **runtime errors**, allowing the normal flow of the program to continue.
+
+---
+
+### 🔹 **Basic Syntax:**
+
+```java
+try {
+    // Code that may throw an exception
+} catch (ExceptionType name) {
+    // Code to handle the exception
+}
+```
+
+You can also add:
+
+* `finally` block (optional): Executes **always**, whether an exception occurred or not.
+* Multiple `catch` blocks.
+
+---
+
+### 🔹 **Example:**
+
+```java
+public class Example {
+    public static void main(String[] args) {
+        try {
+            int[] numbers = {1, 2, 3};
+            System.out.println(numbers[5]);  // Error: index out of bounds
+        } catch (Exception e) {
+            System.out.println("Something went wrong: " + e);
+        } finally {
+            System.out.println("The 'try catch' block is finished.");
+        }
+    }
+}
+```
+
+#### ✅ **Output:**
+
+```
+Something went wrong: java.lang.ArrayIndexOutOfBoundsException: 5
+The 'try catch' block is finished.
+```
+
+---
+
+### 🔹 **Key Points:**
+
+* `try` block contains code that may throw an exception.
+* `catch` handles the error.
+* `finally` always runs (optional but useful for clean-up like closing files).
+
+---
+
 ## 🎯 Quick Interview Questions & Answers
 
 ---
