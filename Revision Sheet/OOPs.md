@@ -682,12 +682,31 @@ public class StaticExample {
 ---
 
 ### ✅ **23. Super Keyword**
-**Refers to parent class**
+
+The `super` keyword refers to the **parent class** in Java.
+
+---
+
+#### 🔑 **Uses of `super`:**
+
+* `super.method()` – Call parent class method
+* `super.variable` – Access parent class variable
+* `super()` – Call parent class constructor (**must be the first line in a constructor**)
+
+---
+
+#### 💡 **Code Example**
 
 ```java
 class Parent {
     String name = "Parent";
-    
+
+    // 🔹 Parent class constructor
+    Parent() {
+        System.out.println("Parent constructor called");
+    }
+
+    // 🔹 Parent method
     void display() {
         System.out.println("Parent method");
     }
@@ -695,16 +714,26 @@ class Parent {
 
 class Child extends Parent {
     String name = "Child";
-    
-    void display() {
-        super.display();  // Calls parent method
-        System.out.println("Child method");
-        System.out.println("Parent name: " + super.name);
-        System.out.println("Child name: " + this.name);
-    }
-    
+
+    // 🔹 Child constructor
     Child() {
-        super();  // Calls parent constructor
+        super();  // Calls Parent constructor
+        System.out.println("Child constructor called");
+    }
+
+    // 🔹 Child method
+    void display() {
+        super.display();  // Calls Parent method
+        System.out.println("Child method");
+        System.out.println("Parent name: " + super.name);  // Access parent variable
+        System.out.println("Child name: " + this.name);    // Access current variable
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Child obj = new Child();  // Constructors get called
+        obj.display();            // Methods get called
     }
 }
 ```
