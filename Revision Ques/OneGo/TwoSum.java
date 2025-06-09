@@ -1,4 +1,5 @@
-import java.util.*;
+package OneGo;
+    import java.util.*;
 
 public class TwoSum {
 
@@ -18,4 +19,5 @@ public class TwoSum {
 
         sc.close();
     }
+
 }
