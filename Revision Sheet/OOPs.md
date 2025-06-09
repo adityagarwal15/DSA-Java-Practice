@@ -795,6 +795,8 @@ public class Main {
 
 ## 🎯 Quick Interview Questions & Answers
 
+---
+
 ### **Q1: Can you achieve multiple inheritance in Java?**
 
 **A**: No, through classes. Yes, through interfaces.
@@ -935,11 +937,12 @@ class Car extends Vehicle {
 
 * `obj1` is declared as type `Vehicle`, which has **no method** named `print1()`.
 * Even though `obj1` is actually a `Car` object, **only methods available in the reference type** (`Vehicle`) can be called without casting.
-* Fix:
 
-  ```java
-  ((Car) obj1).print1();  // ✅ Cast required to access `print1()`
-  ```
+**Fix:**
+
+```java
+((Car) obj1).print1();  // ✅ Cast required to access `print1()`
+```
 
 ---
 
@@ -958,16 +961,57 @@ public class OOPS {
     public static void main(String[] args) {
         Test t = new Test();             // ✅ Line 1
         t.set_marks(98);                 // ✅ Line 2
-        System.out.print(Test.marks);    // ✅ Line 3   // this is correct because since int marks is static, it can be called directly by a class without an object
+        System.out.print(Test.marks);    // ✅ Line 3
     }
 }
 ```
+
 ### ✅ **Output:**
+
 ```
 98
+```
+
 So, which line has error?
-❌ None — all lines are correct.
-````
+❌ **None** — all lines are correct.
+
+> 💡 `marks` is static, so it can be accessed using the class name directly without creating an object.
+
+---
+
+### **Q11: What will be the output of the following code?**
+
+```java
+class Test {
+    static int a;
+    static int b;
+
+    static void changeB() {
+        a = 10;
+        b = 20;
+    }
+}
+
+public class OOPS {
+    public static void main(String[] args) {
+        Test t = new Test();
+        t.changeB();
+        System.out.print(Test.a + Test.b);
+    }
+}
+```
+
+### ✅ **Output:**
+
+```
+30
+```
+
+**Explanation:**
+
+* `a` and `b` are static, so they belong to the **class**, not the instance.
+* `changeB()` sets `a = 10` and `b = 20`.
+* Final print: `10 + 20 = 30`
 
 ---
 
