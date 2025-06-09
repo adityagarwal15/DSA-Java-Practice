@@ -793,13 +793,11 @@ public class Main {
 
 ---
 
-### ✅ **Q5: Basics of Exception Handling in Java**
+### ✅ **25. Basics of Exception Handling in Java**
 
 #### 🔸 **What is Exception Handling?**
 
 Exception handling in Java is a **mechanism** to handle **runtime errors**, allowing the normal flow of the program to continue.
-
----
 
 ### 🔹 **Basic Syntax:**
 
@@ -815,8 +813,6 @@ You can also add:
 
 * `finally` block (optional): Executes **always**, whether an exception occurred or not.
 * Multiple `catch` blocks.
-
----
 
 ### 🔹 **Example:**
 
@@ -841,8 +837,6 @@ public class Example {
 Something went wrong: java.lang.ArrayIndexOutOfBoundsException: 5
 The 'try catch' block is finished.
 ```
-
----
 
 ### 🔹 **Key Points:**
 
