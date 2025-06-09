@@ -983,12 +983,11 @@ So, which line has error?
 
 ```java
 class Test {
-    static int a;
+    static int a = 10;
     static int b;
 
     static void changeB() {
-        a = 10;
-        b = 20;
+       b = a * 3;
     }
 }
 
@@ -1004,14 +1003,14 @@ public class OOPS {
 ### ✅ **Output:**
 
 ```
-30
+40
 ```
 
 **Explanation:**
 
 * `a` and `b` are static, so they belong to the **class**, not the instance.
-* `changeB()` sets `a = 10` and `b = 20`.
-* Final print: `10 + 20 = 30`
+* `changeB()` sets `b = 30`.
+* Final print: `10 + 30 = 40`
 
 ---
 
