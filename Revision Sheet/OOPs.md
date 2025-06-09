@@ -941,7 +941,9 @@ class Car extends Vehicle {
   ((Car) obj1).print1();  // ✅ Cast required to access `print1()`
   ```
 
-Q10: Which line has the error?
+---
+
+### **Q10: Which line has the error?**
 
 ```java
 class Test {
@@ -960,7 +962,7 @@ public class OOPS {
     }
 }
 ```
-✅ Output:
+### ✅ **Output:**
 ```
 98
 So, which line has error?
