@@ -1036,13 +1036,10 @@ public class Circle extends Shape {
 }
 ```
 
----
-
 ### ❓**Question**:
 
 What access modifier(s) can replace `<access-modifier>` in `Circle` without causing a compile-time error?
 
----
 
 ### ✅ **Answer:**
 
@@ -1055,8 +1052,6 @@ You **cannot** use:
 
 * `default` (package-private) ❌ — only works **if both classes are in the same package**
 * `private` ❌ — cannot reduce visibility while overriding
-
----
 
 ### 📌 **Rule**:
 
