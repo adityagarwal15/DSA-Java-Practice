@@ -4,6 +4,8 @@ import java.util.*;
 public class LargestThree {
 
     public static int Compare(int a, int b, int c){
+
+        //remember to put all equal case
         if(a == b && b == c){
             System.out.print("all numbers are equal");
             return a;

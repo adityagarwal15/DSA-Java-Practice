@@ -2,6 +2,8 @@ package OneGo;
 import java.util.*;
 
 public class AreaCircle {
+
+    //use double data type because Math.PI is double 
     
     public static double Area(double rad){
         return  Math.PI * rad * rad;
