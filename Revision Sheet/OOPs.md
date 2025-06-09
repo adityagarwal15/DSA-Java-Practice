@@ -741,31 +741,37 @@ public class Main {
 ---
 
 ### ✅ **24. This Keyword**
-**Refers to current object**
+**Refers to current object of the class**
 
 ```java
 class Person {
     String name;
     int age;
-    
+
+    // 👷 Constructor with parameters
     public Person(String name, int age) {
-        this.name = name;  // Resolves naming conflict
+        // 🟡 Here, local variable 'name' is same as instance variable 'name'
+        // ⚠️ If you just write: name = name;  ← it won’t work correctly!
+        // ✅ So we use this.name to mean: "instance variable name"
+        this.name = name;
         this.age = age;
     }
-    
+
     void display() {
+        // 🔹 this.name is same as just writing name here (no conflict now)
         System.out.println("Name: " + this.name);
-        this.printAge();  // Calls method of current object
+        this.printAge();  // Calls another method of same object
     }
-    
+
     void printAge() {
         System.out.println("Age: " + age);
     }
-    
+
     Person getThis() {
-        return this;  // Returns current object
+        return this;  // Returns the current object
     }
 }
+
 ```
 
 ---
