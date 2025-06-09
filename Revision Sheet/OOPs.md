@@ -1014,6 +1014,59 @@ public class OOPS {
 
 ---
 
+### **Q12: Look at the following code and choose the right access modifier for the word:**
+
+**`Shape.java`**
+
+```java
+public class Shape {
+    protected void display() {
+        System.out.println("Display-base");
+    }
+}
+```
+
+**`Circle.java`**
+
+```java
+public class Circle extends Shape {
+    <access-modifier> void display() {
+        System.out.println("Display-derived");
+    }
+}
+```
+
+---
+
+### ❓**Question**:
+
+What access modifier(s) can replace `<access-modifier>` in `Circle` without causing a compile-time error?
+
+---
+
+### ✅ **Answer:**
+
+You can use:
+
+* `protected` ✅
+* `public` ✅
+
+You **cannot** use:
+
+* `default` (package-private) ❌ — only works **if both classes are in the same package**
+* `private` ❌ — cannot reduce visibility while overriding
+
+---
+
+### 📌 **Rule**:
+
+> **When overriding a method**, the subclass **cannot reduce** the access level of the method.
+
+* `protected` (superclass) → must be overridden with `protected` or `public`
+* Overriding with `private` will cause a **compile-time error**
+
+---
+
 ## ✅ Final Checklist
 
 - [ ] Classes & Objects creation
