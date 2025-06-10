@@ -1,4 +1,4 @@
-package StuckEasy;
+package StuckBasic;
 import java.util.*;
 
 public class MultiplicationTable {
