@@ -1,4 +1,4 @@
-package Stuck;
+package StuckEasy;
 import java.util.*;
 
 public class Prime {
