@@ -1,7 +1,7 @@
-package Loops.GoodQuestions;
+package StuckEasy;
 import java.util.*;
-public class SumEvenOdd {
 
+public class SumEvenOdd {
     //wap that reads a set of integer and then prints the sum of even and odd integers
 
     public static void main(String[] args) {
@@ -32,5 +32,4 @@ public class SumEvenOdd {
         sc.close();
     }
 }
-
 
