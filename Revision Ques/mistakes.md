@@ -148,3 +148,11 @@ System.out.printf("Success Rate: %.1f%%%n", rate);
 ---
 
 > 🔄 **Keep this updated!** Add new mistakes as you encounter them. Small fixes prevent big debugging sessions.
+
+
+
+ADD THESE 
+
+1. Avoid using while(true) unless you're using a break inside. Use while(n > 0) when processing digits of a number. 
+
+2. 
