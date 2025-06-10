@@ -85,4 +85,30 @@ System.out.printf("Score: %.1f%%%n", percentage);
 - Use printf for formatted output with symbols and decimal precision
 
 ---
-*Keep this handy for future reference and review before coding sessions!*
+
+basic way top input an array:
+
+ // Length of the array
+        System.out.print("Enter length of the array: ");
+        int len = sc.nextInt();
+
+        // Initialize the array
+
+        //this is how we initalize the array, remember
+        int arr[] = new int[len];
+
+        // Input array elements
+        System.out.println("Enter elements of the array:");
+        for(int i = 0; i < len; i++){
+            arr[i] = sc.nextInt();
+        }
+
+
+
+
+        IN JAVA USE
+
+        Interger.MIN_VALUE = - infinity
+        Interger.MAX_VALUE = + infinity
+
+        Usually in problem when to compare values and have to find largest or smallest
