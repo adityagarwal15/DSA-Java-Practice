@@ -1,3 +1,7 @@
+//revisit binary to dec and dec to binary once
+
+
+
 # Programming Mistakes to Avoid - Reference Guide
 
 ## Resource Management
