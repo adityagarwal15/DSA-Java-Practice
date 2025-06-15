@@ -4,7 +4,7 @@ public class SumNnatural {
 
     public static int Nat(int n) {
         if (n == 1) {
-            return 1; // base case
+            return 1; // base case because sum of 1 natural number will be 1 only
         }
         return n + Nat(n - 1); // recursive case till it hits base case and then sums while unwinding the call stack
     }
