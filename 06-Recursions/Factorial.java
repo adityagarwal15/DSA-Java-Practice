@@ -7,6 +7,9 @@ public class Factorial {
         if (n == 0 || n == 1) {  // base case
             return 1;
         }
+        else if(n<0){
+            return -1;
+        }
         return n * factorial(n - 1);  // recursive call once it hits base case then starts multiplying
     }
 
