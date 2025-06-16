@@ -5,6 +5,8 @@ public class FirstLastOccOptimized {
     static int first = -1;
     static int last = -1;
 
+    //this is optimized but it has the same time and space complexity
+
     public static void findOccurrence(int arr[], int key, int index) {
         if (index == arr.length) {
             return;
