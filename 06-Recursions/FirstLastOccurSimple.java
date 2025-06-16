@@ -11,7 +11,7 @@ public class FirstLastOccurSimple {
     public static int lastOccurrence(int[] arr, int index, int key) {
         if (index < 0) return -1;
         if (arr[index] == key) return index;
-        return lastOccurrence(arr, index - 1, key);
+        return lastOccurrence(arr, index - 1, key); //-1 because we are check from the last
     }
 
     public static void main(String[] args) {
@@ -31,8 +31,8 @@ public class FirstLastOccurSimple {
         System.out.print("enter key: ");
         int key = sc.nextInt();
 
-        int first = firstOccurrence(arr, 0, key);
-        int last = lastOccurrence(arr, arr.length - 1, key);
+        int first = firstOccurrence(arr, 0, key); //index = 0
+        int last = lastOccurrence(arr, arr.length - 1, key); //index = last
 
         System.out.println("First Occurrence: " + first);
         System.out.println("Last Occurrence: " + last);
