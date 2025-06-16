@@ -14,7 +14,7 @@ public class FirstLastOccurrence {
             if (first == -1) {
                 first = index;
             }
-            last = index;  // keep updating last
+            last = index;  // updating last
         }
 
         findOccurrence(arr, key, index + 1);
