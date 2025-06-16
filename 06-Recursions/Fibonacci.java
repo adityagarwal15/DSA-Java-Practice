@@ -1,8 +1,12 @@
+// Program to print the first 'n' Fibonacci numbers using recursion
+
 import java.util.*;
 
 public class Fibonacci {
 
+    // Recursive function to print Fibonacci numbers
     public static void printFibo(int first, int second, int count, int n) {
+
         if (count == n) {
             return; // base case
         }
@@ -18,9 +22,14 @@ public class Fibonacci {
         System.out.print("Enter how many Fibonacci numbers to print: ");
         int n = sc.nextInt();
 
-        // Starting values of Fibonacci
-        System.out.print("0 1 ");
-        printFibo(0, 1, 2, n);
+        // Input validation
+        if (n < 2) {
+            System.out.println("Invalid input, minimum 2 numbers should be there");
+        } else {
+            // Starting values of Fibonacci series
+            System.out.print("0 1 ");
+            printFibo(0, 1, 2, n);
+        }
 
         sc.close();
     }
