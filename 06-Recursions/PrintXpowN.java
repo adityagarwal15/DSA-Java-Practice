@@ -10,6 +10,18 @@ public class PrintXpowN {
         return num * getpow(num, power - 1); // recursive case
     }
 
+//     getpow(3, 4)
+//      = 3 * getpow(3, 3)
+//      = 3 * (3 * getpow(3, 2))
+//      = 3 * (3 * (3 * getpow(3, 1)))
+//      = 3 * (3 * (3 * (3 * getpow(3, 0))))
+//      = 3 * (3 * (3 * (3 * 1))) ← base case
+//      = 3 * (3 * (3 * 3))
+//      = 3 * (3 * 9)
+//      = 3 * 27
+//      = 81
+
+
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
 
