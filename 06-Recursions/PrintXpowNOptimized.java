@@ -16,6 +16,19 @@ public class PrintXpowNOptimized {
         }
     }
 
+    
+    /* VISUAL TRACE
+
+    Let’s say: getpow(2, 5) → should return 32.
+
+            getpow(2, 5)
+        → half = getpow(2, 2)    // since 5/2 = 2
+            → half = getpow(2, 1) → returns 2
+            → half * half = 2 * 2 = 4
+        → power is odd → return 4 * 4 * 2 = 32
+     */
+
+
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
 
