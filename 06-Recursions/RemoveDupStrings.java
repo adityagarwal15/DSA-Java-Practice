@@ -9,6 +9,8 @@ public class RemoveDupStrings {
 
         char currChar = str.charAt(index);
 
+        //this is for all test cases upperCase, lowerCase, digits, symbols
+
         // Check if the character is already in result
         if (result.indexOf(String.valueOf(currChar)) == -1) {
             result.append(currChar);
