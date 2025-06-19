@@ -19,7 +19,7 @@ public class RemoveDupStrings {
             result.append(currChar);
         }
 
-        // Move to the next character in the input string
+        // Move to the next character in the input strings
         return removeDuplicates(str, index + 1, result);
     }
 
