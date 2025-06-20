@@ -5,7 +5,7 @@ public class DecOrder {
     public static void dec(int start, int end) {
         // Base case
         if (start == end) {
-            System.out.print(end);  // No space after last number
+            System.out.print(end);  // No space after last numbers
             return;
         }
 
