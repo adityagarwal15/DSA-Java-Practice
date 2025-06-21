@@ -6,7 +6,7 @@ public class CheckArraySort {
     public static boolean checkArr(int arr[], int index) {
         // Base case: if we reach the second last element, stop
         if (index == arr.length - 1) {
-            return true;
+            return true; //TRUE because we reached here w/o any unsorted pair
         }
 
         // If current element is greater than next, not sorted
