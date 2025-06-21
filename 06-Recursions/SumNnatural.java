@@ -8,6 +8,14 @@ public class SumNnatural {
         }
         return n + Nat(n - 1); // recursive case till it hits base case and then sums while unwinding the call stack
     }
+    
+    //another approach
+   public static int Natural(int count, int n) {
+    if (count > n) {
+        return 0; // base case: if current number exceeds n, stop and return 0
+    }
+    return count + Natural(count + 1, n); // recursive case: add current count and go to next
+}
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -18,6 +26,9 @@ public class SumNnatural {
         int result = Nat(num);
         System.out.println("Sum of first " + num + " natural numbers is: " + result);
 
-        sc.close();
+       int res = Natural(1, num);  // pass count=1, n=num
+       System.out.println("Sum using second approach: " + res);
+
+       sc.close();
     }
 }
