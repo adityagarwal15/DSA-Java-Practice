@@ -2,33 +2,45 @@ import java.util.*;
 
 public class SumNnatural {
 
+    // First Recursive Approach (Top-down)
+    // Recursively calculates n + (n-1) + ... + 1
     public static int Nat(int n) {
+        // Base case: sum of first 1 number is 1
         if (n == 1) {
-            return 1; // base case because sum of 1 natural number will be 1 only
+            return 1;
         }
-        return n + Nat(n - 1); // recursive case till it hits base case and then sums while unwinding the call stack
+
+        // Recursive case: add current number and recurse on n-1
+        return n + Nat(n - 1);
     }
-    
-    //another approach
-   public static int Natural(int count, int n) {
-    if (count > n) {
-        return 0; // base case: if current number exceeds n, stop and return 0
+
+    // Second Recursive Approach (Cleaner)
+    // Starts from 1, goes till n and adds count + count+1 + ... + n
+    public static int Natural(int count, int n) {
+        // Base case: if count exceeds n, stop recursion and return 0
+        if (count > n) {
+            return 0;
+        }
+
+        // Recursive case: add current count and recurse with count+1
+        return count + Natural(count + 1, n);
     }
-    return count + Natural(count + 1, n); // recursive case: add current count and go to next
-}
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
+        // 🔸 Input
         System.out.print("Enter num to get sum of natural numbers: ");
         int num = sc.nextInt();
 
+        // 🔹 Using first approach
         int result = Nat(num);
-        System.out.println("Sum of first " + num + " natural numbers is: " + result);
+        System.out.println("Sum of first " + num + " natural numbers (Top-down): " + result);
 
-       int res = Natural(1, num);  // pass count=1, n=num
-       System.out.println("Sum using second approach: " + res);
+        // 🔹 Using second approach (Clean and Intuitive)
+        int res = Natural(1, num);  // Start from 1, go up to num
+        System.out.println("Sum of first " + num + " natural numbers (Bottom-up): " + res);
 
-       sc.close();
+        sc.close();
     }
 }
