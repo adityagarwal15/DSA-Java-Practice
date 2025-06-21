@@ -1,4 +1,4 @@
-package Loops.GoodQuestions;
+
 
 import java.util.*;
 //print the table of a given number

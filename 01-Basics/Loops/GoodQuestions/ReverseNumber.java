@@ -1,4 +1,4 @@
-package Loops.GoodQuestions;
+
 import java.util.*;
 
 public class ReverseNumber {
