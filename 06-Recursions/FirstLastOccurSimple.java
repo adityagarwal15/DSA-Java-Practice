@@ -3,13 +3,13 @@ import java.util.*;
 public class FirstLastOccurSimple {
 
     public static int firstOccurrence(int[] arr, int index, int key) {
-        if (index == arr.length) return -1;
+        if (index == arr.length) return -1; // if index = size of an array then -1
         if (arr[index] == key) return index;
         return firstOccurrence(arr, index + 1, key);
     }
 
     public static int lastOccurrence(int[] arr, int index, int key) {
-        if (index < 0) return -1;
+        if (index < 0) return -1; // if index is less than 0 then -1
         if (arr[index] == key) return index;
         return lastOccurrence(arr, index - 1, key); //-1 because we are check from the last
     }
