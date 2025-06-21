@@ -4,10 +4,17 @@ public class PrintXpowN {
 
     // Recursive function to calculate num^power
     public static int getpow(int num, int power) {
-        if (power == 0) {
-            return 1; // base case: anything raised to 0 is 1
+
+         /* ---------- base cases ---------- */
+        if (power == 0) {           // anything^0 = 1
+            return 1; 
         }
-        return num * getpow(num, power - 1); // recursive case
+        if (power == 1) {           // anything^1 = itself
+            return num;
+        }
+
+          /* ---------- recursive step ---------- */
+        return num * getpow(num, power - 1);   // keep reducing the exponent
     }
 
 //     getpow(3, 4)
@@ -31,6 +38,13 @@ public class PrintXpowN {
         System.out.print("Enter power: ");
         int power = sc.nextInt();
 
+         /* guard against negative exponents for this simple version */
+        if (power < 0) {
+            System.out.println("Negative powers not handled in this version.");
+            sc.close();
+            return;
+        }
+        
         int result = getpow(num, power);
         System.out.println(num + " raised to the power " + power + " is: " + result);
 
