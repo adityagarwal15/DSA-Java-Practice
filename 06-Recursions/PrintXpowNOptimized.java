@@ -7,7 +7,7 @@ public class PrintXpowNOptimized {
         if (power == 0) return 1;              // Base case: num^0 = 1
         if (power == 1) return num;            // Base case: num^1 = num
 
-        long half = getpow(num, power / 2);    // Divide the power by 2
+        long half = getpow(num, power / 2);    // Divide the power by 2 --> num^pow/2
 
         if (power % 2 == 0) {
             return half * half;               // Even power: x^n = (x^(n/2))^2
