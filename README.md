@@ -1,6 +1,6 @@
 # 🚀 DSA Java Practice Repository
 
-Welcome to my **DSA (Data Structures & Algorithms)** Java Practice Repository — created to build a rock-solid foundation in problem-solving and prepare for **MAANG/FAANG-level interviews**.
+Welcome to my **DSA (Data Structures & Algorithms)** Java Practice Repository — created to build a solid foundation in problem-solving and prepare for **MAANG/FAANG-level interviews**.
 
 ---
 
