@@ -14,6 +14,7 @@ public class RemoveDupStrings {
         // Check if the character is already present in 'result'
         // Convert char to string and use indexOf to see if it's already been added
         // If indexOf returns -1, it means the character is NOT present in result yet
+        // .indexof() returns the index only if each char string is present else -1
         if (result.indexOf(String.valueOf(currChar)) == -1) {
             // Not a duplicate — append it to the result
             result.append(currChar);
