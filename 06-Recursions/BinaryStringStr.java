@@ -2,7 +2,7 @@ import java.util.*;
 
 public class BinaryStringStr {
 
-    // ✅ SAME LOGIC using normal `String` instead of StringBuilder.
+    // SAME LOGIC using normal `String` instead of StringBuilder.
     //
     // Strings in Java are IMMUTABLE, so `str + "0"` creates a new string automatically.
     // This ensures that each recursive call works with a separate string, avoiding side effects.
