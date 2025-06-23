@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class BinaryStringsNoConsecOne {
+public class BinaryStringsStrBuilder{
 
     //  IF USING STRINGBUILDER — THERE IS A CATCH:
     // StringBuilder is MUTABLE, so appending modifies the current object.
