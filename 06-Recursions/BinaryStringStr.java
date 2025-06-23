@@ -20,7 +20,7 @@ public class BinaryStringStr {
 
         // You can add '1' only if last digit was not '1'
         if (lastDigit == 0) {
-            generate(n - 1, str + "1"3, 1);
+            generate(n - 1, str + "1", 1);
         }
     }
 
