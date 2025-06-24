@@ -2,80 +2,79 @@ import java.util.*;
 
 public class MergeSort {
 
-    // Function to merge two sorted halves of the array
-    public static void merge(int[] arr, int left, int mid, int right) {
-        // Sizes of two subarrays
-        int n1 = mid - left + 1;
-        int n2 = right - mid;
-
-        // Temporary arrays
-        int[] leftArr = new int[n1];
-        int[] rightArr = new int[n2];
-
-        // Copy data to temp arrays
-        for (int i = 0; i < n1; i++)
-            leftArr[i] = arr[left + i];
-
-        for (int j = 0; j < n2; j++)
-            rightArr[j] = arr[mid + 1 + j];
-
-        // Merge the temp arrays back into arr[left..right]
-        int i = 0, j = 0, k = left;
-
-        while (i < n1 && j < n2) {
-            if (leftArr[i] <= rightArr[j]) {
-                arr[k] = leftArr[i];
-                i++;
-            } else {
-                arr[k] = rightArr[j];
-                j++;
-            }
-            k++;
+    // Recursive function to divide the array and sort each half
+    public static void mergeSort(int arr[], int si, int ei) {
+        // Base case: when only one element or invalid range
+        if (si >= ei) {
+            return;
         }
 
-        // Copy remaining elements of leftArr[] if any
-        while (i < n1) {
-            arr[k] = leftArr[i];
-            i++;
-            k++;
-        }
+        int mid = si + (ei - si) / 2; // Calculate mid index safely
 
-        // Copy remaining elements of rightArr[] if any
-        while (j < n2) {
-            arr[k] = rightArr[j];
-            j++;
-            k++;
-        }
+        // Recursively sort the left half
+        mergeSort(arr, si, mid); // goes back find new mid for every new subarray until becomes single elem
+
+        // Recursively sort the right half
+        mergeSort(arr, mid + 1, ei);
+
+        // Merge both sorted halves
+        merge(arr, si, mid, ei);
     }
 
-    // Recursive function to divide and sort the array
-    public static void mergeSort(int[] arr, int left, int right) {
-        if (left < right) {
-            int mid = (left + right) / 2;
+    // Function to merge two sorted halves [si...mid] and [mid+1...ei]
+    public static void merge(int arr[], int si, int mid, int ei) {
+        // Create temporary array to store merged result
+        int temp[] = new int[ei - si + 1];
 
-            // Sort first and second halves
-            mergeSort(arr, left, mid);
-            mergeSort(arr, mid + 1, right);
+        int i = si;      // Pointer for left half
+        int j = mid + 1; // Pointer for right half
+        int k = 0;       // Pointer for temp array
 
-            // Merge the sorted halves
-            merge(arr, left, mid, right);
+        // Merge elements in sorted order
+        while (i <= mid && j <= ei) {
+            if (arr[i] < arr[j]) {
+                temp[k++] = arr[i++];
+            } else {
+                temp[k++] = arr[j++];
+            }
+        }
+
+        // Copy remaining elements from left half (if any)
+        // Left  = [2, 6, 8]  for cases like these
+        // Right = [3, 7]
+
+        while (i <= mid) {
+            temp[k++] = arr[i++];
+        }
+
+        // Copy remaining elements from right half (if any)
+        while (j <= ei) {
+            temp[k++] = arr[j++];
+        }
+
+        // Copy temp array back to original array in correct position
+        for (k = 0, i = si; k < temp.length; k++, i++) {
+            arr[i] = temp[k];
         }
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter number of elements: ");
-        int n = sc.nextInt();
+        // Input array size
+        System.out.print("Enter size of the array: ");
+        int size = sc.nextInt();
 
-        int[] arr = new int[n];
-        System.out.print("Enter array elements: ");
-        for (int i = 0; i < n; i++) {
+        int arr[] = new int[size];
+
+        // Input array elements
+        System.out.print("Enter elements of the array: ");
+        for (int i = 0; i < size; i++) {
             arr[i] = sc.nextInt();
         }
 
-        // Sort the array
-        mergeSort(arr, 0, n - 1);
+        // Call merge sort
+        mergeSort(arr, 0, arr.length - 1);
 
         // Output the sorted array
         System.out.print("Sorted array: ");
