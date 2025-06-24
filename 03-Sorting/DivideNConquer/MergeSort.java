@@ -24,7 +24,8 @@ public class MergeSort {
     // Function to merge two sorted halves [si...mid] and [mid+1...ei]
     public static void merge(int arr[], int si, int mid, int ei) {
         // Create temporary array to store merged result
-        int temp[] = new int[ei - si + 1];
+        // Only allocate temp[] for the current subarray to avoid overwriting sorted parts and save memory
+        int temp[] = new int[ei - si + 1]; // why ei-si+1 cuz it is safe avoids overwriting, whereas arr.length size could overwrite and waste space
 
         int i = si;      // Pointer for left half
         int j = mid + 1; // Pointer for right half
