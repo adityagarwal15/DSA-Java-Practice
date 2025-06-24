@@ -17,20 +17,17 @@ Welcome to my **DSA (Data Structures & Algorithms)** Java Practice Repository â€
 
 ## ðŸ“‚ Folder Structure
 
-| Folder                  | Description                                               |
-| ----------------------- | --------------------------------------------------------- |
-| `01-Basics`             | Java syntax, loops, conditions, methods, patterns         |
-| `02-Arrays`             | Array operations, prefix sum, two-pointers, subarrays     |
-| `03-LinkedLists`        | Single/Double Linked Lists, cycle detection, reversal     |
-| `04-Stacks`             | Stack basics, balanced parentheses, infix-postfix eval    |
-| `05-Queues`             | Queue/Deque, circular queue, sliding window problems      |
-| `06-Trees`              | Binary Trees, BST, DFS, BFS, Tree traversals              |
-| `07-Graphs`             | BFS, DFS, Union-Find, Dijkstra, Topological sort          |
-| `08-Sorting`            | Bubble, Selection, Insertion, Merge Sort, QuickSort       |
-| `09-Searching`          | Linear search, Binary search, search space problems       |
-| `10-DynamicProgramming` | Memoization, Tabulation, DP patterns, 0/1 Knapsack        |
-| `11-Recursion`          | Backtracking, permutations, subsets, N-Queens             |
-| `cheatsheets`           | Quick revision sheets (Time & Space Complexity, Java I/O) |
+| Folder              | Description                                                                 |
+|---------------------|-----------------------------------------------------------------------------|
+| `01-Basics`         | Java syntax, loops, conditionals, functions, and basic pattern problems     |
+| `02-Arrays`         | Array operations, prefix sums, two-pointers, subarrays, and optimizations   |
+| `03-Sorting`        | Bubble, Selection, Insertion, Merge Sort, QuickSort, and sorting logic      |
+| `04-2DArrays`       | Matrix traversals, searching, and 2D pattern-based problems                 |
+| `05-Strings`        | String manipulation, palindrome logic, anagrams, and sliding window         |
+| `06-Recursions`     | Recursive problems, backtracking, subsets, permutations, and N-Queens       |
+| `NEETCODE/`         | Curated list of key DSA problems inspired by NeetCode (topic-wise)          |
+| `Revision Ques/`    | Commonly asked questions for revision (mixed topics)                        |
+| `Revision Sheet/`   | Tabular summary of key concepts and patterns for last-minute prep           |
 
 ---
 
