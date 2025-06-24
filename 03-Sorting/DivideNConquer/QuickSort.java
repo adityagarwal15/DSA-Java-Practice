@@ -41,7 +41,7 @@ public class QuickSort {
         arr[i + 1] = arr[ei];
         arr[ei] = temp;
 
-        return i + 1; // Return the index of the pivot
+        return i + 1; // Return the index of the pivot , i+1 becasue till i it was sorted before the pivot and i+1 till ei it was sorted after the pivot, so actual pos of pivot is i+1
     }
 
     public static void main(String[] args) {
