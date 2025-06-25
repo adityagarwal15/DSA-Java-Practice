@@ -1,3 +1,10 @@
+// Optimal Solution (Moore’s Voting Algorithm)
+// This is the most efficient approach with:
+
+// Time Complexity: O(n)
+
+// Space Complexity: O(1)
+
 import java.util.*;
 
 public class MajorityElementFinder {
