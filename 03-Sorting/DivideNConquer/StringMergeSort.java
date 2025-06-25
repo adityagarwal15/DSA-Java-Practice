@@ -28,6 +28,13 @@ public class StringMergeSort {
         // Merge in lexicographical order
         while (i <= mid && j <= ei) {
             if (arr[i].compareTo(arr[j]) < 0) {
+                
+            //.compareTo Returns:
+
+            // A negative number if arr[i] < arr[j]
+            // Zero if arr[i] == arr[j]
+            // A positive number if arr[i] > arr[j]
+
                 temp[k++] = arr[i++];
             } else {
                 temp[k++] = arr[j++];
