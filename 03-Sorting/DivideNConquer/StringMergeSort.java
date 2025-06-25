@@ -29,11 +29,10 @@ public class StringMergeSort {
         while (i <= mid && j <= ei) {
             if (arr[i].compareTo(arr[j]) < 0) {
 
-            //.compareTo Returns(it compares firsr char of strings, they are same and next char):
-
-            // A negative number if arr[i] < arr[j]
-            // Zero if arr[i] == arr[j]
-            // A positive number if arr[i] > arr[j]
+                //.compareTo Returns:
+                // A negative number if arr[i] < arr[j]
+                // Zero if arr[i] == arr[j]
+                // A positive number if arr[i] > arr[j]
 
                 temp[k++] = arr[i++];
             } else {
@@ -53,6 +52,9 @@ public class StringMergeSort {
 
         // Copy sorted temp back to original array
         for (int x = 0; x < temp.length; x++) {
+            // Why si + x:
+            // We are only sorting part of the array (from si to ei),
+            // so to copy back correctly, we write arr[si + x] = temp[x]
             arr[si + x] = temp[x];
         }
     }
@@ -69,7 +71,7 @@ public class StringMergeSort {
         mergeSort(arr, 0, arr.length - 1);
 
         System.out.println("Sorted array: " + Arrays.toString(arr));
-        
+
         sc.close();
     }
 }
