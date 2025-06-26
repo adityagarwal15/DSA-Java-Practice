@@ -1,53 +1,87 @@
+import java.util.*;
+
 public class InversionCount {
 
-    public static int mergeSort(int[] arr, int[] temp, int left, int right) {
-        int mid, invCount = 0;
-        if (left < right) {
-            mid = (left + right) / 2;
+    static int inversionCount = 0; // Global variable to store inversion count
 
-            invCount += mergeSort(arr, temp, left, mid);
-            invCount += mergeSort(arr, temp, mid + 1, right);
+    // Recursive function to divide and sort
+    public static void mergeSort(int[] arr, int si, int ei) {
+        if (si >= ei) return;
 
-            invCount += merge(arr, temp, left, mid + 1, right);
-        }
-        return invCount;
+        int mid = si + (ei - si) / 2;
+
+        mergeSort(arr, si, mid);
+        mergeSort(arr, mid + 1, ei);
+
+        merge(arr, si, mid, ei);
     }
 
-    public static int merge(int[] arr, int[] temp, int left, int mid, int right) {
-        int i = left;
-        int j = mid;
-        int k = left;
-        int invCount = 0;
+    // Merge two sorted halves and count inversions
+    public static void merge(int[] arr, int si, int mid, int ei) {
+        int[] temp = new int[ei - si + 1];
 
-        while (i <= mid - 1 && j <= right) {
+        int i = si;       // Pointer for left half
+        int j = mid + 1;  // Pointer for right half
+        int k = 0;        // Pointer for temp array
+
+        while (i <= mid && j <= ei) {
             if (arr[i] <= arr[j]) {
                 temp[k++] = arr[i++];
             } else {
                 temp[k++] = arr[j++];
-                invCount += (mid - i);  // Count inversions
+                
+                /*
+                 🔍 How merge sort helps:
+                 Merge Sort divides the array into two halves, sorts them recursively,
+                 and merges the two sorted halves. While merging:
+                 
+                 - Both halves are already sorted.
+                 - If arr[i] > arr[j] and i < j, then arr[i] is out of place.
+                 - So are all elements from i to mid (since the left half is sorted).
+                 
+                 Hence, all (mid - i + 1) elements in the left half form inversions
+                 with arr[j], and we count them in one step.
+                */
+                inversionCount += (mid - i + 1);
             }
         }
 
-        while (i <= mid - 1)
+        while (i <= mid) {
             temp[k++] = arr[i++];
+        }
 
-        while (j <= right)
+        while (j <= ei) {
             temp[k++] = arr[j++];
+        }
 
-        for (i = left; i <= right; i++)
-            arr[i] = temp[i];
-
-        return invCount;
-    }
-
-    public static int countInversions(int[] arr) {
-        int n = arr.length;
-        int[] temp = new int[n];
-        return mergeSort(arr, temp, 0, n - 1);
+        // Copy sorted elements back into original array
+        for (i = si, k = 0; i <= ei; i++, k++) {
+            arr[i] = temp[k];
+        }
     }
 
     public static void main(String[] args) {
-        int[] arr = {2, 4, 1, 3, 5};
-        System.out.println("Inversion Count = " + countInversions(arr));  // Output: 3
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter size of the array: ");
+        int size = sc.nextInt();
+
+        int[] arr = new int[size];
+
+        System.out.print("Enter elements of the array: ");
+        for (int i = 0; i < size; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        mergeSort(arr, 0, size - 1);
+
+        System.out.print("Sorted array: ");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+
+        System.out.println("\nInversion Count = " + inversionCount);
+
+        sc.close();
     }
 }
