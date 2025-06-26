@@ -2,7 +2,9 @@ import java.util.*;
 
 public class InversionCount {
 
-    static int inversionCount = 0; // Global variable to store inversion count
+    //All functions (mergeSort(), merge(), main()) access and modify the same shared static variable
+
+    static int inversionCount = 0; // Global variable to store inversion count  it's shared across the whole class — and that’s how main() gets the answer.
 
     // Recursive function to divide and sort
     public static void mergeSort(int[] arr, int si, int ei) {
@@ -43,6 +45,7 @@ public class InversionCount {
                  with arr[j], and we count them in one step.
                 */
                 inversionCount += (mid - i + 1);
+                //it updates the shared global variable. not manual returning from this fnc
             }
         }
 
