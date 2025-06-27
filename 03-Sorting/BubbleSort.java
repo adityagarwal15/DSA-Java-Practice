@@ -25,7 +25,7 @@ public class BubbleSort {
             }
 
             // If no swaps in this pass, array is already sorted
-            if (!swapped) {
+            if (swapped == false) {
                 break; // break out of the loop early
             }
         }
