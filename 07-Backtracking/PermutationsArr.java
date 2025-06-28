@@ -26,7 +26,7 @@ public class PermutationsArr {
         for (int i = index; i < arr.length; i++) {
             swap(arr, index, i); // fix one element
             permute(arr, index + 1); // recurse for remaining
-            swap(arr, index, i); // 🔁 backtrack (undo swap)
+            swap(arr, index, i); // backtrack (undo swap)
         }
     }
 
