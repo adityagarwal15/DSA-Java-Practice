@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class FindSubsets {
+public class SubsetsStr {
 
     public static void sets(String str, String ans, int i) {
         // base case
