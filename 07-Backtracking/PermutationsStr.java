@@ -19,7 +19,7 @@ public class PermutationsStr {
 
             // Build the remaining string (exclude the character at index i)
             // Example: str = "abc", i = 1 → remaining = "ac"
-            String remaining = str.substring(0, i) + str.substring(i + 1);
+            String remaining = str.substring(0, i) + str.substring(i + 1,str.length());
 
             // Recursive call:
             // Fix 'curr' at this position, and permute the remaining characters
