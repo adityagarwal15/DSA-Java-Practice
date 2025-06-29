@@ -66,7 +66,7 @@ public class Nqueen {
         System.out.print("Enter value of N (NxN chessboard): ");
         int n = sc.nextInt(); // Size of the chessboard
 
-        char[][] board = new char[n][n]; // Create an NxN board
+        char[][] board = new char[n][n]; // Create an NxN boards
 
         // Initialize the board with 'x' representing empty cells
         for (int i = 0; i < n; i++) {
