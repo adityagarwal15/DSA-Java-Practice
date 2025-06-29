@@ -16,10 +16,10 @@ public class SubsetsArr {
 
         // include arr[i] in subset
         subset[j] = arr[i]; //includes current element
-        printSubsets(arr, i + 1, subset, j + 1);
+        printSubsets(arr, i + 1, subset, j + 1);  //(yes case)
 
         // exclude arr[i] from subset
-        printSubsets(arr, i + 1, subset, j);
+        printSubsets(arr, i + 1, subset, j);  //(no case)
     }
 
     public static void main(String[] args) {
