@@ -15,7 +15,7 @@ public class SubsetsArr {
         }
 
         // include arr[i] in subset
-        subset[j] = arr[i];  //INCLUDE CURRENT ELEMENT
+        subset[j] = arr[i]; //includes current element
         printSubsets(arr, i + 1, subset, j + 1);
 
         // exclude arr[i] from subset
