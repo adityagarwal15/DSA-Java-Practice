@@ -2,6 +2,8 @@ import java.util.*;
 
 public class Nqueen {
 
+    static int count = 0;
+
     // Function to check if it's safe to place a queen at board[row][col]
     public static boolean isSafe(char board[][], int row, int col) {
         // Check vertically upward (same column)
@@ -33,7 +35,8 @@ public class Nqueen {
     public static void nQueens(char board[][], int row) {
         // Base case: if all rows are filled with queens
         if (row == board.length) {
-            printBoard(board); // Print the current valid board configuration
+            count++;
+            printBoard(board, count); // Print the current valid board configuration
             return;
         }
 
@@ -49,7 +52,11 @@ public class Nqueen {
     }
 
     // Function to print the current state of the chess board
-    public static void printBoard(char board[][]) {
+    public static void printBoard(char board[][], int count) {
+
+        //also print total number of ways
+       System.out.println("Solution #" + count);
+
         System.out.println("---------- Chess Board ----------");
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
@@ -66,7 +73,7 @@ public class Nqueen {
         System.out.print("Enter value of N (NxN chessboard): ");
         int n = sc.nextInt(); // Size of the chessboard
 
-        char[][] board = new char[n][n]; // Create an NxN boards
+        char[][] board = new char[n][n]; // Create an NxN board
 
         // Initialize the board with 'x' representing empty cells
         for (int i = 0; i < n; i++) {
@@ -77,5 +84,8 @@ public class Nqueen {
 
         // Start placing queens from the 0th row
         nQueens(board, 0);
+
+        //prints the total number of ways 
+       System.out.println("Total number of solutions: " + count);
     }
 }
