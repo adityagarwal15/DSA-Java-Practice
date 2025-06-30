@@ -73,6 +73,8 @@ public class SudokuSolver {
 
     // Main method
     public static void main(String[] args) {
+
+        //board 
         char[][] board = {
             { '5', '3', '.', '.', '7', '.', '.', '.', '.' },
             { '6', '.', '.', '1', '9', '5', '.', '.', '.' },
