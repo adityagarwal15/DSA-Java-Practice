@@ -26,7 +26,7 @@ public class GridWayOptimized {
         // So total moves = (n - 1) + (m - 1) = n + m - 2
         // Out of these total moves, choose positions for either down or right moves.
         // So the answer = C(n + m - 2, n - 1) or C(n + m - 2, m - 1)
-        return nCr(n + m - 2, n - 1);
+        return nCr(n + m - 2, n - 1); // can also use m - 1
     }
 
     public static void main(String[] args) {
