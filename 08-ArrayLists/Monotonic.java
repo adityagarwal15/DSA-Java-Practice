@@ -2,33 +2,45 @@ import java.util.*;
 
 public class Monotonic {
 
-    public static boolean check(ArrayList<Integer> list, int n){
-        boolean check = false;
-        for(int i=0; i<n-1;i++){
-            if(list.get(i)<=list.get(i+1)){
-                check = true;
+    // Function to check if the ArrayList is monotonic
+    public static boolean check(ArrayList<Integer> list, int n) {
+        // We assume both increasing and decreasing are true initially
+        boolean increasing = true;
+        boolean decreasing = true;
+
+        // Loop through the list to compare each element with its next one
+        for (int i = 0; i < n - 1; i++) {
+            // If current element is less than next, it's not decreasing
+            if (list.get(i) < list.get(i + 1)) {
+                decreasing = false;
             }
-            else if(list.get(i)>= list.get(i+1)){
-                check = true;
+            // If current element is greater than next, it's not increasing
+            else if (list.get(i) > list.get(i + 1)) {
+                increasing = false;
             }
-            else{
-                check = false;
-            }
+            // If elements are equal, we don't update anything as it's valid for both cases
         }
-        return check;
+
+        // If either increasing or decreasing is true, then it's monotonic
+        return increasing || decreasing;
     }
-    public static void main(String[] args){
+
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("enter size: ");
-        int n =sc.nextInt();
+        // Input size of ArrayList
+        System.out.print("Enter size: ");
+        int n = sc.nextInt();
 
-        System.out.print("enter elements: ");
+        // Input elements into ArrayList
+        System.out.print("Enter elements: ");
         ArrayList<Integer> list = new ArrayList<>();
-        for(int i =0 ; i<n ; i++){
+        for (int i = 0; i < n; i++) {
             list.add(sc.nextInt());
         }
 
-        check(list,n);
+        // Call the check function and print result
+        boolean result = check(list, n);
+        System.out.println("Is the list monotonic? " + result);
     }
 }
