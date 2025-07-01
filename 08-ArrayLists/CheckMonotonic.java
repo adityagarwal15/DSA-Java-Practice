@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Monotonic {
+public class CheckMonotonic {
 
     // Function to check if the ArrayList is monotonic
     public static boolean check(ArrayList<Integer> list, int n) {
