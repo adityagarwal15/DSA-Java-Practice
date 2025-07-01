@@ -2,7 +2,7 @@ import java.util.*;
 
 public class PairSumOpt {
 
-    // Optimized function using two-pointer approach
+    // Optimized function using two-pointer approach works on SORTED ARRAY ONLY
     public static void Sum(ArrayList<Integer> list, int n, int target) {
 
         boolean found = false;
