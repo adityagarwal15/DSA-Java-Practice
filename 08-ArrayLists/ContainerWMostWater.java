@@ -1,3 +1,6 @@
+//this is the brute force method -- O(n^2)
+
+
 import java.util.*;
 
 public class ContainerWMostWater {
