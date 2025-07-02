@@ -55,6 +55,11 @@ class LinkedList {
         return searchRecursive(head, key, 0);
     }
 
+    /*
+    public → external use (clean, simple)
+    private → internal logic (helper, detailed)
+    */
+
     // Recursive helper function (PRIVATE)
     private int searchRecursive(Node current, int key, int index) {
         if (current == null) {
