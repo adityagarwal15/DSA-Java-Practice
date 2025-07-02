@@ -97,7 +97,7 @@ class LinkedList {
 }
 
 // Main class to test the linked list
-public class InsertElem {
+public class InsertSizeElem {
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
 
