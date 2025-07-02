@@ -10,7 +10,7 @@ class Node {
 }
 
 // LinkedList class
-class LinkedList {
+class LinkedLists {
     Node head;
     Node tail;
 
@@ -56,7 +56,7 @@ class LinkedList {
 // Main class (must match filename)
 public class LinkedListExample {
     public static void main(String[] args) {
-        LinkedList list = new LinkedList();
+        LinkedLists list = new LinkedLists();
         list.addFirst(10);
         list.addFirst(5);
         list.addLast(20);
