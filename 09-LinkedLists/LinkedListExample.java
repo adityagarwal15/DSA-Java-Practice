@@ -40,6 +40,10 @@ class LinkedList {
 
     // Print all elements in the Linked List
     public void printList() {
+        if(head == null){
+            System.out.print("linked list is empty");
+            return;
+        }
         Node temp = head;
         while (temp != null) {
             System.out.print(temp.data + " -> ");
