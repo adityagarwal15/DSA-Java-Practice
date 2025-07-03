@@ -35,15 +35,15 @@ Here's your **modified folder structure** with the added topics *after recursion
 | `10-Stack`        | Stack implementation, infix-postfix eval, valid parentheses, monotonic stack |
 | `11-Queues`       | Queue and deque, circular queue, sliding window maximum, BFS applications    |
 | `12-Greedy`       | Activity selection, fractional knapsack, job sequencing, coin problems       |
-| `13-Trees`        | Binary Trees, Tree Traversals, BST operations, and recursive tree logic      |
+| `13-Trees`        | Binary Trees, Tree Traversals, and recursive tree logic                      |
+| `14-BST`          | Binary Search Tree operations: insert, delete, search, floor, ceil, etc.     |
+| `15-Heaps`        | Min/Max Heap implementation, HeapSort, priority queues, and applications     |
+| `16-Hashing`      | HashMaps, HashSets, frequency maps, and hashing-based problems                |
+| `17-Tries`        | Trie (Prefix Tree) operations and autocomplete-related problems               |
+| `18-Graphs`       | BFS, DFS, Topological Sort, Cycle Detection, Dijkstra, and graph problems     |
 | `NEETCODE/`       | Curated list of key DSA problems inspired by NeetCode (topic-wise)           |
 | `Revision Ques/`  | Commonly asked questions for revision (mixed topics)                         |
 | `Revision Sheet/` | Tabular summary of key concepts and patterns for last-minute prep            |
-
----
-
-Let me know if you want to include **Graphs**, **Heaps**, **Tries**, or **DP** next!
-
 
 ---
 
