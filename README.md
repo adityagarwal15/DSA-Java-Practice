@@ -15,19 +15,35 @@ Welcome to my **DSA (Data Structures & Algorithms)** Java Practice Repository �
 
 ---
 
+Here's your **modified folder structure** with the added topics *after recursion*—including **Backtracking, ArrayList, LinkedList, Stack, Queues, Greedy, and Trees**:
+
+---
+
 ## 📂 Folder Structure
 
-| Folder              | Description                                                                 |
-|---------------------|-----------------------------------------------------------------------------|
-| `01-Basics`         | Java syntax, loops, conditionals, functions, and basic pattern problems     |
-| `02-Arrays`         | Array operations, prefix sums, two-pointers, subarrays, and optimizations   |
-| `03-Sorting`        | Bubble, Selection, Insertion, Merge Sort, QuickSort, and sorting logic      |
-| `04-2DArrays`       | Matrix traversals, searching, and 2D pattern-based problems                 |
-| `05-Strings`        | String manipulation, palindrome logic, anagrams, and sliding window         |
-| `06-Recursions`     | Recursive problems, backtracking, subsets, permutations, and N-Queens       |
-| `NEETCODE/`         | Curated list of key DSA problems inspired by NeetCode (topic-wise)          |
-| `Revision Ques/`    | Commonly asked questions for revision (mixed topics)                        |
-| `Revision Sheet/`   | Tabular summary of key concepts and patterns for last-minute prep           |
+| Folder            | Description                                                                  |
+| ----------------- | ---------------------------------------------------------------------------- |
+| `01-Basics`       | Java syntax, loops, conditionals, functions, and basic pattern problems      |
+| `02-Arrays`       | Array operations, prefix sums, two-pointers, subarrays, and optimizations    |
+| `03-Sorting`      | Bubble, Selection, Insertion, Merge Sort, QuickSort, and sorting logic       |
+| `04-2DArrays`     | Matrix traversals, searching, and 2D pattern-based problems                  |
+| `05-Strings`      | String manipulation, palindrome logic, anagrams, and sliding window          |
+| `06-Recursions`   | Recursive problems, subsets, permutations, and N-Queens                      |
+| `07-Backtracking` | Classic backtracking problems like Sudoku Solver, Rat in a Maze, and more    |
+| `08-ArrayList`    | Dynamic arrays in Java, operations, problems using ArrayList                 |
+| `09-LinkedList`   | Singly and doubly linked lists, reversal, palindrome check, cycle detection  |
+| `10-Stack`        | Stack implementation, infix-postfix eval, valid parentheses, monotonic stack |
+| `11-Queues`       | Queue and deque, circular queue, sliding window maximum, BFS applications    |
+| `12-Greedy`       | Activity selection, fractional knapsack, job sequencing, coin problems       |
+| `13-Trees`        | Binary Trees, Tree Traversals, and recursive tree logic                      |
+| `14-BST`          | Binary Search Tree operations: insert, delete, search, floor, ceil, etc.     |
+| `15-Heaps`        | Min/Max Heap implementation, HeapSort, priority queues, and applications     |
+| `16-Hashing`      | HashMaps, HashSets, frequency maps, and hashing-based problems                |
+| `17-Tries`        | Trie (Prefix Tree) operations and autocomplete-related problems               |
+| `18-Graphs`       | BFS, DFS, Topological Sort, Cycle Detection, Dijkstra, and graph problems     |
+| `NEETCODE/`       | Curated list of key DSA problems inspired by NeetCode (topic-wise)           |
+| `Revision Ques/`  | Commonly asked questions for revision (mixed topics)                         |
+| `Revision Sheet/` | Tabular summary of key concepts and patterns for last-minute prep            |
 
 ---
 
