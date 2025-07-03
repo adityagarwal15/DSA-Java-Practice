@@ -1,70 +1,83 @@
-class Node{
+class Node {
     int data;
     Node next;
-    Node(int data){
+    Node(int data) {
         this.data = data;
         this.next = null;
     }
 }
 
-class LinkedList{
+class LinkedList {
 
     Node head;
     Node tail;
 
-    //method to add elem from last(effecient way)
-    public void add(int data){
+    // Efficient add from last
+    public void add(int data) {
         Node newNode = new Node(data);
-        if(head == null){
+        if (head == null) {
             head = tail = newNode;
-        }
-        else{
-            newNode.next = head;
-            head = newNode;
+        } else {
+            tail.next = newNode;
+            tail = newNode;
         }
     }
 
-    //method to print
-    public void print(){
+    public void print() {
         Node temp = head;
-        while(temp!=null){
+        while (temp != null) {
             System.out.print(temp.data + " -> ");
             temp = temp.next;
         }
-        System.out.print("null");
+        System.out.println("null");
     }
 
-    public boolean checkCycle(){
+    // Create cycle at pos (1-based index)
+    public void makeCycle(int pos) {
+        Node temp = head;
+        Node startNode = null;
+        int count = 1;
+
+        while (temp.next != null) {
+            if (count == pos) {
+                startNode = temp;
+            }
+            temp = temp.next;
+            count++;
+        }
+
+        temp.next = startNode;
+    }
+
+    // Floyd's Cycle Detection
+    public boolean checkCycle() {
         Node fast = head;
         Node slow = head;
 
-        while(fast!=null && fast.next!=null){
-
-            //always first move then check if cycle detection (IMP) 
-            //cuz if checked at initial stage then obviously they are at same point
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
 
-            //now check
-            if(slow == fast){
+            if (slow == fast) {
                 return true;
             }
         }
+
         return false;
     }
-
 }
-    public class DetectCycle {
-    public static void main(String[] args){
+
+public class DetectCycle {
+    public static void main(String[] args) {
         LinkedList ll = new LinkedList();
         ll.add(1);
         ll.add(2);
         ll.add(3);
         ll.add(4);
         ll.add(5);
-        System.out.print("is cycle there? " + ll.checkCycle());
 
+        ll.makeCycle(3); // create a cycle from node 5 to node 3
 
-
+        System.out.println("Cycle present? " + ll.checkCycle()); // should return true
     }
 }
