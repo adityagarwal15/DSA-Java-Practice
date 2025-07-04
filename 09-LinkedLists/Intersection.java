@@ -1,5 +1,8 @@
-package 09-LinkedLists;
+
 
 public class Intersection {
     
+    public static void main(String[] args){
+
+    }
 }
