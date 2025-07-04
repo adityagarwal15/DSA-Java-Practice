@@ -71,7 +71,7 @@ public class LinkedListImplementation {
         System.out.println("Popped element: " + st.pop()); // 30
         System.out.println("Top after pop: " + st.peek()); // 20
         System.out.println("Stack size: " + st.size()); // 2
-        System.out.println("Is stack empty? " + st.isEmpty()); // false
+        System.out.println("Is stack empty? " + st.isEmpty()); // false 
 
         st.pop();
         st.pop();
