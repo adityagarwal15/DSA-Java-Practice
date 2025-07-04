@@ -86,18 +86,18 @@ If two pointers (one faster than the other) meet, it can only happen if the fast
 
     // 🔁 Create a cycle in the linked list at the given position (0-based)
     public void makeCycle(int pos) {
-        Node temp = head;
-        Node startNode = null;
-        int count = 0;
+        Node temp = head; //temp start w head
+        Node startNode = null; //startNode will be at null
+        int count = 0; //start w 0-based indexing
 
         while (temp.next != null) {
             if (count == pos) {
-                startNode = temp; // store the node at position 'pos'
+                startNode = temp; // store the node at position 'pos' cuz temp is at head intially and moving 1-by-1 so when we get the (count==pos), temp is at pos, this pointing (STARTNODE = TEMP) to make a start node of cycle
             }
             temp = temp.next;
             count++;
         }
-
+        //temp will stop at last node becasue while will stop once temp is at last
         temp.next = startNode; // connect last node to startNode to form cycle
     }
 }
