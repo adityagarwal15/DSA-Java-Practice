@@ -22,7 +22,7 @@ class MyStack { //this is the class which represents the behaviour of a stack
             System.out.println("Stack Underflow");
             return -1; // or throw exception
         }
-        return stack.remove(stack.size() - 1);
+        return stack.remove(stack.size() - 1); //returns the int value(top of the stack)
     }
 
     // Peek at the top element without removing it
