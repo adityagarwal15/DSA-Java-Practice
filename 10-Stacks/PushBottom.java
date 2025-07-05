@@ -32,7 +32,7 @@ public class PushBottom {
     // ⚠ Note: This empties the stack (since we pop everything)
     public static void print(Stack<Integer> st) {
         while (!st.isEmpty()) {
-            System.out.println(st.pop());
+            System.out.print(st.pop() + " ");
         }
     }
 
