@@ -36,8 +36,10 @@ public class NextGreaterElem {
         greater(arr, nge);
 
         System.out.print("Next Greater Elements: ");
-        for (int s : nge) {
-            System.out.print(s + " ");
+
+        //looping on nge, becasue in that arr only changes made in the above function
+        for (int i : nge) {
+            System.out.print(i + " ");
         }
     }
 }
