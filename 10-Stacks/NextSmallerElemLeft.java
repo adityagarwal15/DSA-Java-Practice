@@ -2,7 +2,7 @@ import java.util.*;
 
 public class NextSmallerElemLeft {
 
-    public static void smaller(int[] arr, int[] nge){
+    public static void smaller(int[] arr, int[] nse){
         Stack<Integer> st = new Stack<>();
 
         int n = arr.length;
@@ -10,15 +10,15 @@ public class NextSmallerElemLeft {
         //loop from 0 to n cuz to the left this is not right
         for(int i=0; i<n; i++){
             
-            while(!st.isEmpty() && st.peek()<= arr[i]){
+            while(!st.isEmpty() && st.peek()>= arr[i]){
                 st.pop();
             }
 
             if(st.isEmpty()){
-                nge[i] = -1;
+                nse[i] = -1;
             }
             else{
-                nge[i] = st.peek();
+                nse[i] = st.peek();
             }
 
             st.push(arr[i]);
@@ -27,9 +27,9 @@ public class NextSmallerElemLeft {
     public static void main(String[] args){
 
         int arr[] = {6,8,0,1,5};
-        int nge[] = new int[arr.length];
+        int nse[] = new int[arr.length];
 
-        greater(arr,nge);
+        smaller(arr,nse);
 
          System.out.print("Original Arr: ");
         for (int i : arr) {
@@ -38,9 +38,9 @@ public class NextSmallerElemLeft {
 
         System.out.println();
 
-        System.out.print("Next Greater Elements: ");
+        System.out.print("Next Smaller Elements: ");
         // Looping on nge because this array was filled in the function above
-        for (int i : nge) {
+        for (int i : nse) {
             System.out.print(i + " ");
         }
     }
