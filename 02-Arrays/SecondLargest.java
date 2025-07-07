@@ -7,7 +7,9 @@ public class SecondLargest {
             if (nums[i] > max) {
                 secondMax = max;
                 max = nums[i];
-            } else if (nums[i] > secondMax && nums[i] < max) {
+            } 
+            // if less than max and greater than secondMax
+            else if (nums[i] > secondMax && nums[i] < max) {
                 secondMax = nums[i];
             }
         }
