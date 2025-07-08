@@ -15,13 +15,9 @@ Welcome to my **DSA (Data Structures & Algorithms)** Java Practice Repository �
 
 ---
 
-Here's your **modified folder structure** with the added topics *after recursion*—including **Backtracking, ArrayList, LinkedList, Stack, Queues, Greedy, and Trees**:
-
----
-
 ## 📂 Folder Structure
 
-| Folder            | Description                                                                  |
+| 📁 Folder         | 📄 Description                                                               |
 | ----------------- | ---------------------------------------------------------------------------- |
 | `01-Basics`       | Java syntax, loops, conditionals, functions, and basic pattern problems      |
 | `02-Arrays`       | Array operations, prefix sums, two-pointers, subarrays, and optimizations    |
@@ -38,10 +34,10 @@ Here's your **modified folder structure** with the added topics *after recursion
 | `13-Trees`        | Binary Trees, Tree Traversals, and recursive tree logic                      |
 | `14-BST`          | Binary Search Tree operations: insert, delete, search, floor, ceil, etc.     |
 | `15-Heaps`        | Min/Max Heap implementation, HeapSort, priority queues, and applications     |
-| `16-Hashing`      | HashMaps, HashSets, frequency maps, and hashing-based problems                |
-| `17-Tries`        | Trie (Prefix Tree) operations and autocomplete-related problems               |
-| `18-Graphs`       | BFS, DFS, Topological Sort, Cycle Detection, Dijkstra, and graph problems     |
-| `19-DP`       | BFS, DFS, Topological Sort, Cycle Detection, Dijkstra, and graph problems     |
+| `16-Hashing`      | HashMaps, HashSets, frequency maps, and hashing-based problems               |
+| `17-Tries`        | Trie (Prefix Tree) operations and autocomplete-related problems              |
+| `18-Graphs`       | BFS, DFS, Topological Sort, Cycle Detection, Dijkstra, and graph problems    |
+| `19-DP`           | Dynamic Programming: memoization, tabulation, 0/1 Knapsack, LIS, and more    |
 | `NEETCODE/`       | Curated list of key DSA problems inspired by NeetCode (topic-wise)           |
 | `Revision Ques/`  | Commonly asked questions for revision (mixed topics)                         |
 | `Revision Sheet/` | Tabular summary of key concepts and patterns for last-minute prep            |
