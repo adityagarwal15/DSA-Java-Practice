@@ -41,6 +41,7 @@ Here's your **modified folder structure** with the added topics *after recursion
 | `16-Hashing`      | HashMaps, HashSets, frequency maps, and hashing-based problems                |
 | `17-Tries`        | Trie (Prefix Tree) operations and autocomplete-related problems               |
 | `18-Graphs`       | BFS, DFS, Topological Sort, Cycle Detection, Dijkstra, and graph problems     |
+| `19-DP`       | BFS, DFS, Topological Sort, Cycle Detection, Dijkstra, and graph problems     |
 | `NEETCODE/`       | Curated list of key DSA problems inspired by NeetCode (topic-wise)           |
 | `Revision Ques/`  | Commonly asked questions for revision (mixed topics)                         |
 | `Revision Sheet/` | Tabular summary of key concepts and patterns for last-minute prep            |
