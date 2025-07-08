@@ -12,7 +12,7 @@ public class QueueUsingLL {
     }
 
     // Queue pointers
-    Node front, rear;
+    Node front, rear; //similar to head,tail
 
     // Constructor
     public QueueUsingLL() {
