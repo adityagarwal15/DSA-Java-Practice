@@ -26,7 +26,7 @@ public class QueueUsingArray {
             System.out.println("Queue is Empty (Underflow)");
             return -1;
         }
-        return arr[front++];
+        return arr[front++]; //Logically removed yes (from queue), Physically no(from array) --> just the front pointer is moved forward
     }
 
     // Peek (front element)
