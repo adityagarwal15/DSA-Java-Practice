@@ -57,7 +57,7 @@ public class QueueUsingTwoStacks {
 
     // Main method to test the implementation
     public static void main(String[] args) {
-        QueueUsingTwoStacks q = new QueueUsingTwoStacks();
+        QueueUsingTwoStacks q = new QueueUsingTwoStacks(); //making obj of class only
 
         q.enqueue(10);
         q.enqueue(20);
