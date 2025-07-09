@@ -13,7 +13,7 @@ public class FirstNonRepeatingCharStream {
             // Step 1: Add character to queue
             q.offer(ch);
 
-            // Step 2: Increase frequency
+            // Step 2: Increase frequency (IMP)
             freq[ch - 'a']++;
 
             // Step 3: Remove all repeating characters from front
