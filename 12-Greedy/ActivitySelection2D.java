@@ -26,7 +26,9 @@ public class ActivitySelection2D {
         // - If equal, their order doesn't change
         //
         // So this sorts the 2D array by the second column (end times) in ascending order
-        Arrays.sort(activities, (a, b) -> a[1] - b[1]);
+        // Arrays.sort(activities, (a, b) -> a[1] - b[1]);
+        Arrays.sort(activities, (a, b) -> Integer.compare(a[1], b[1])); // avoids overflow issues
+
 
         // Step 3: Always select the first activity (it ends earliest)
         int count = 1; // At least one activity can be selected
