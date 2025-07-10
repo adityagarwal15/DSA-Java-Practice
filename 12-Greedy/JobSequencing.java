@@ -15,46 +15,53 @@ public class JobSequencing {
         }
     }
 
-    // Function to find max number of jobs done and max profit
-    public static int[] jobScheduling(Job[] jobs) {
-        // Step 1: Sort jobs by profit in descending order
-        Arrays.sort(jobs, new Comparator<Job>() {
-            public int compare(Job a, Job b) {
-                return b.profit - a.profit;
-            }
-        });
-
-        // Step 2: Find the maximum deadline to know how many slots we need
-        int maxDeadline = 0;
-        for (Job job : jobs) {
-            if (job.deadline > maxDeadline) {
-                maxDeadline = job.deadline;
+    // Function to get the maximum deadline among all jobs
+    public static int getMaxDeadline(Job[] jobs) {
+        int max = 0;
+        for (int i = 0; i < jobs.length; i++) {
+            if (jobs[i].deadline > max) {
+                max = jobs[i].deadline;
             }
         }
+        return max;
+    }
 
-        // Step 3: Create a slot array to keep track of used days (1-based indexing)
-        boolean[] slotUsed = new boolean[maxDeadline + 1];  // false = free, true = occupied
+    // Function to schedule jobs for maximum profit
+    public static int[] jobScheduling(Job[] jobs) {
+        int n = jobs.length;
+
+        // Step 1: Sort jobs by profit in descending order
+        Arrays.sort(jobs, (a, b) -> b.profit - a.profit);
+
+        // Step 2: Find the maximum deadline
+        int maxDeadline = getMaxDeadline(jobs);
+
+        // Step 3: Create slot array to keep track of occupied days
+        boolean[] slotUsed = new boolean[maxDeadline + 1]; // 1-based indexing
+
         int totalJobs = 0;
         int totalProfit = 0;
 
-        // Step 4: Try to assign each job to the latest available day before its deadline
-        for (Job job : jobs) {
-            for (int day = job.deadline; day >= 1; day--) {
+        // Step 4: Try assigning each job to the latest available slot
+        for (int i = 0; i < n; i++) {
+            int deadline = jobs[i].deadline;
+            int profit = jobs[i].profit;
+
+            for (int day = deadline; day >= 1; day--) {
                 if (!slotUsed[day]) {
-                    slotUsed[day] = true;     // Mark this day as used
-                    totalJobs++;              // Count this job
-                    totalProfit += job.profit; // Add its profit
-                    break;                    // Move to the next job
+                    slotUsed[day] = true;
+                    totalJobs++;
+                    totalProfit += profit;
+                    break; // move to next job
                 }
             }
         }
 
-        // Return the number of jobs done and the total profit earned
         return new int[]{totalJobs, totalProfit};
     }
 
     public static void main(String[] args) {
-        // Creating a list of jobs with id, deadline, and profit
+        // Example jobs with id, deadline, and profit
         Job[] jobs = {
             new Job(1, 2, 100),
             new Job(2, 1, 19),
@@ -63,10 +70,10 @@ public class JobSequencing {
             new Job(5, 3, 15)
         };
 
-        // Call the job scheduling function
+        // Run the scheduling algorithm
         int[] result = jobScheduling(jobs);
 
-        // Output the results
+        // Output the final result
         System.out.println("Maximum number of jobs: " + result[0]);
         System.out.println("Maximum total profit: " + result[1]);
     }
