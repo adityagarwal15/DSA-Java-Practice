@@ -1,11 +1,14 @@
 public class KthLargestOdd {
 
     public static int findKthLargestOdd(int L, int R, int K) {
+
+        //SINCE IT IS AN RANGE, THEY ARE ALREADY SORTED
+
         // Step 1: Find max odd <= R
-        int maxOdd = (R % 2 == 1) ? R : R - 1;
+        int maxOdd = (R % 2 == 1) ? R : R - 1; 
 
         // Step 2: Find min odd >= L
-        int minOdd = (L % 2 == 1) ? L : L + 1;
+        int minOdd = (L % 2 == 1) ? L : L + 1;  
 
         // Step 3: Count total odd numbers in range
         int totalOdds = ((maxOdd - minOdd) / 2) + 1;
