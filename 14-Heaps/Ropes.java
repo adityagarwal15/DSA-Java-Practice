@@ -29,7 +29,7 @@ public class Ropes {
     }
 
     public static void main(String[] args) {
-        int[] arr = {4, 5, 6, 1};  // Example ropes
+        int[] arr = {1,2,3,4,5};  // Example ropes
 
         int result = cost(arr);    // Call the function
         System.out.print("Minimum cost to connect ropes: " + result);
