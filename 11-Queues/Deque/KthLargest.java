@@ -2,32 +2,34 @@ import java.util.*;
 
 public class KthLargest {
 
-    // Function to return a list of kth largest elements after each input in the stream
+    /* -------------------- Key Idea --------------------
+       We only need to track the top K elements at any point in time.
+       
+       Use a Min-Heap of size K:
+       Why min-heap?
+       - Because it keeps the smallest of the K largest numbers at the top.
+       - So, the top of the heap is the Kth largest element.
+    */
+
+    // Function to return a list of Kth largest elements after each input in the stream
     public static List<Integer> findK(int[] stream, int k) {
-        // MinHeap to keep track of the k largest elements
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-        // To store results after each input
-        List<Integer> result = new ArrayList<>();
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();  // MinHeap to track K largest
+        List<Integer> result = new ArrayList<>();                // List to store Kth largest at each step
 
-        // Traverse the stream
+        // Process each number in the stream
         for (int num : stream) {
-            // Step 1: Add the new number to the heap
-            minHeap.add(num);
+            minHeap.add(num);  // Step 1: Add new number to heap
 
-            // Step 2: If heap has more than k elements, remove the smallest
-            // This ensures heap only stores the k largest elements seen so far
+            // Step 2: Maintain size of heap to k
             if (minHeap.size() > k) {
-                minHeap.poll();
+                minHeap.poll();  // Remove the smallest among the top K
             }
 
-            // Step 3:
-            // If we have seen at least k elements, the top of the heap is the kth largest
+            // Step 3: If we have at least k elements, the Kth largest is the heap top
             if (minHeap.size() == k) {
                 result.add(minHeap.peek());
-            } 
-            // Otherwise, we haven't seen enough numbers yet to determine kth largest
-            else {
-                result.add(null); // Represent with null or placeholder
+            } else {
+                result.add(null);  // Not enough elements yet to determine Kth largest
             }
         }
 
@@ -40,6 +42,9 @@ public class KthLargest {
 
         List<Integer> output = findK(stream, k);
 
-        // Print result in readable format
         System.out.println("Kth largest after each input:");
-        fo
+        for (Integer val : output) {
+            System.out.print((val == null ? "__" : val) + " ");
+        }
+    }
+}
