@@ -27,7 +27,7 @@ public class CustomObjPriorQueue {
         }
 
         System.out.println();
-
+        //Practice
         // ✅ Max Heap (students sorted by highest marks first)
         PriorityQueue<Student> maxHeap = new PriorityQueue<>((a, b) -> b.marks - a.marks);
 
