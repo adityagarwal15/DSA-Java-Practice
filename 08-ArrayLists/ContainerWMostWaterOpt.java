@@ -16,7 +16,7 @@ public class ContainerWMostWaterOpt {
             int area = height * width;
             maxWater = Math.max(maxWater, area);
 
-            // Move the pointer at the shorter line
+            // Move the pointer at the shorter line(means move the shorter line)
             if (heights.get(left) < heights.get(right)) {
                 left++;
             } else {

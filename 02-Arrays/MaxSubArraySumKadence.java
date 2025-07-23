@@ -13,7 +13,7 @@ public class MaxSubArraySumKadence {
             }
              System.out.print(currSum + " ");
         }
-       
+       System.out.println();
         System.out.println("Max subarray sum is: " + maxSum);
     }
 
