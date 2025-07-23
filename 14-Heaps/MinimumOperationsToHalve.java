@@ -3,7 +3,7 @@ import java.util.*;
 public class MinimumOperationsToHalve {
 
     public static int minOperations(double[] arr) {
-        // Step 1: Create a MaxHeap using PriorityQueue with reverse order
+        // Step 1: Create a MaxHeap using PriorityQueue with reverse order.
         PriorityQueue<Double> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
 
         double totalSum = 0;
